@@ -2,7 +2,7 @@
 //Appelle de la base de donnée
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=OC_training;charset=utf8', 'root', 'root');
+	$bdd = new PDO('mysql:host=localhost;dbname=OC_training;charset=utf8', 'root', '');
 }
 catch (Exception $e)
 {
