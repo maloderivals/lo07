@@ -1,6 +1,6 @@
 <?php
 
-include ('../../../TD_TP/Formulaire_Dynamique_fonction.php');
+include ('../include/Formulaire_Dynamique_fonction.php');
 ?>
 
 <html>
@@ -13,7 +13,7 @@ include ('../../../TD_TP/Formulaire_Dynamique_fonction.php');
     <body>
         <h1><div>
         <?php
-        form_start('POST', 'Formulaire_elem_forma_action.php');
+        form_start('POST', 'element_formation_form_action.php');
         input('Nbre','text','Nbre',"Rentrer le nombre d'élément de formation que vous allez entrer pour operer sur votre cursus à l'UTT");
         form_end();
         ?>

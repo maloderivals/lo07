@@ -7,9 +7,9 @@
  }
  
 
-include '../../../TD_TP/Formulaire_Dynamique_fonction.php';
+include '../include/Formulaire_Dynamique_fonction.php';
 
-include '../class/ElementFormation.php';
+include '../Classes/ElementFormation.php';
 
 // Sous MAMP (Mac)
 $bdd = new PDO('mysql:host=localhost;dbname=Projet_LO07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
