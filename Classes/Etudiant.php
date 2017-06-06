@@ -44,8 +44,4 @@ private $filière;
 }
 
 
-
-
-
-
 ?>
