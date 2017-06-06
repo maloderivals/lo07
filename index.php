@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php echo "<h1 align='center'>INDEX</h1>";
+echo "Sacré projet mamene";
+?>
 <html>
     <head>
+        <title>Index</title>
         <meta charset="UTF-8">
-        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <h2><div><a href="Fonctio1/Formulaire_Nbre_elem_forma.php">Test</a></div></h2>
+        <h2><div><a href="class/ElementFormation.php">Error</a></div></h2>
     </body>
 </html>
