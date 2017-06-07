@@ -29,23 +29,33 @@ class Regle {
     }
 
     function setNum_regle($num_regle) {
-        $this->num_regle = $num_regle;
+        if(is_int($num_regle)){
+            $this->num_regle = $num_regle;
+        }
     }
 
     function setAction($action) {
-        $this->action = $action;
+        if(is_string($action)){
+            $this->action = $action;
+        }
     }
 
     function setType($type) {
-        $this->type = $type;
+        if(is_string($type)){
+            $this->type = $type;
+        }
     }
 
     function setTemps_cursus($temps_cursus) {
-        $this->temps_cursus = $temps_cursus;
+        if(is_int($temps_cursus)){
+            $this->temps_cursus = $temps_cursus;
+        }
     }
 
     function setCredits($credits) {
-        $this->credits = $credits;
+        if(is_int($credits)){
+            $this->credits = $credits;
+        }
     }
 
     public function __toString() {

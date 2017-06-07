@@ -1,7 +1,8 @@
 <?php
 
 require_once 'Regle.php';
-class Reglement {
+
+class Reglement extends Regle{
 
     private $regles = array();
     private $nom_reglement;
@@ -19,10 +20,13 @@ class Reglement {
     }
 
     function setRegles($regles) {
-        $this->regles = $regles;
+        if(is_array($regles)){
+            $this->regles = $regles;
+        }
     }
 
     //A modifier c'est juste pour essayer de poser des bases
+    
     function creerReglement($filename) {
         foreach ($filename as $key => $value) { //parcourir chaque ligne du fichier (retrouver la bonne formulation)
             $line = fgetcsv($filename, $length);

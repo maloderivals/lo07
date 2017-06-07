@@ -1,9 +1,9 @@
 <?php
-
+session_start(); // sur toutes nos pages 
 
 class ElementFormation {
 
-    private $sem_seq;
+    private $sem_seq; //
     private $sem_label;
     private $sigle;
     private $categorie;
@@ -72,41 +72,77 @@ class ElementFormation {
     }
 
     function setSem_seq($sem_seq) {
-        $this->sem_seq = $sem_seq;
+        if (is_int($sem_seq)){
+            $this->sem_seq = $sem_seq;
+        }
     }
 
     function setSem_label($sem_label) {
+        if(is_string($sem_label)){
         $this->sem_label = $sem_label;
+        }
     }
 
     function setSigle($sigle) {
-        $this->sigle = $sigle;
+        if(is_string($sigle)){
+            $this->sigle = $sigle;
+        }
     }
 
     function setCategorie($categorie) {
-        $this->categorie = $categorie;
+        if(is_string($categorie)){
+            $this->categorie = $categorie;
+        }
     }
 
     function setAffectation($affectation) {
+        if(is_string($affectation)){
         $this->affectation = $affectation;
+        }
     }
 
     function setUtt($utt) {
-        $this->utt = $utt;
+        if(is_bool($utt)){
+            $this->utt = $utt;
+        }
     }
 
     function setProfil($profil) {
-        $this->profil = $profil;
+        if(is_bool($profil)){
+            $this->profil = $profil;
+        }
     }
 
     function setCredit($credit) {
+        if(is_int($credit)){
         $this->credit = $credit;
+        }    
     }
 
     function setResultat($resultat) {
+        if(is_string($resultat)){
         $this->resultat = $resultat;
+        }
     }
 
+    
+    function hydrate(array $donnees)
+    {
+      foreach ($donnees as $key => $value)
+      {
+        // On récupère le nom du setter correspondant à l'attribut.
+        $method = 'set'.ucfirst($key);
+
+        // Si le setter correspondant existe.
+        if (method_exists($this, $method))
+        {
+          // On appelle le setter.
+          $this->$method($value);
+        }
+      }
+    }
+    
+    
 }
 
 ?>
