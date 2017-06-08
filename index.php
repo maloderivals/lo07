@@ -1,4 +1,6 @@
-<?php echo "<h1 align='center'>INDEX</h1>";
+<?php 
+session_start(); // sur toutes nos pages 
+echo "<h1 align='center'>INDEX</h1>";
 echo "Sacré projet mamene";
 ?>
 <html>

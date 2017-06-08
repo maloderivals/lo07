@@ -1,11 +1,19 @@
 <?php
+session_start(); // sur toutes nos pages 
+ function Rentrez_UV($Nbre_UV){
+ form_start('POST', 'element_formation_form_action.php');
+ echo'<div>';
+    for ($i=0;$i<$Nbre_UV;$i++){
+        input('UV$i', 'text', $name, $text);
+    }
+ echo'</div>';
+ 
+ }
+
+
 
  $elem= new ElementFormation($sem_seq, $sem_label, $sigle, $categorie, $affectation, $utt, $profil, $credit, $resultat);
 
- function form_dynamique(){
-     
- }
- 
 
 include '../include/Formulaire_Dynamique_fonction.php';
 
@@ -34,10 +42,31 @@ $elem->setcredit('38');
            ?>
         </div>
         </h1>
-            
-            
-            
-        </div>
+        <div><?php
+        
+        ?></div>
+        <div><?php
+        
+        ?></div>
+        <div><?php
+        
+        ?></div>
+        <div><?php
+        
+        ?></div>
+        <div><?php
+        
+        ?></div>
+        <div><?php
+        
+        ?></div>
+        <div><?php?></div>
+        <div><?php?></div>
+        <div><?php?></div>
+        <div><?php?></div>
+        <div><?php?></div>
+        
+        
 
         <h1>
         <div>
