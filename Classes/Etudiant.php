@@ -87,18 +87,13 @@ private $label_etu; // ISI1 ou ISI2...
           // On appelle le setter.
           $this->$method($value);
         }
+     
       }
     }
-
     public function _AfficherEtu(){
         
-    }
+    echo "hellpo";
     
-}
-
-
-
-
-
-
-?>
+    }
+ }
+ ?>
