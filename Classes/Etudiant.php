@@ -6,7 +6,7 @@ private $id;
 private $nom;
 private $prenom;
 private $admission;
-private $filière;
+private $filiere;
 
 
 
