@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 06 Juin 2017 à 13:24
+-- Généré le :  Jeu 08 Juin 2017 à 11:33
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -27,30 +27,29 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cursus` (
-  `id` int(11) NOT NULL,
-  `label` varchar(20) NOT NULL,
-  `numeroEtu` int(5) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `label` varchar(10) NOT NULL,
+  `etudiant` int(6) NOT NULL,
+  `element_formation` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `elementcursus`
+-- Structure de la table `element_formation`
 --
 
-CREATE TABLE `elementcursus` (
-  `id` int(11) NOT NULL,
-  `num_semestre` varchar(2) NOT NULL,
-  `label_semestre` varchar(4) NOT NULL,
-  `sigle` varchar(4) NOT NULL,
-  `categorie` varchar(2) NOT NULL,
-  `affectation` varchar(4) NOT NULL,
-  `utt` varchar(1) NOT NULL,
-  `profil` varchar(1) NOT NULL,
+CREATE TABLE `element_formation` (
+  `sem_seq` int(2) NOT NULL,
+  `sem_label` varchar(6) NOT NULL,
+  `sigle` varchar(6) NOT NULL,
+  `categorie` varchar(6) NOT NULL,
+  `affectation` varchar(6) NOT NULL,
+  `utt` tinyint(1) NOT NULL,
+  `profil` tinyint(1) NOT NULL,
   `credit` int(2) NOT NULL,
-  `resultat` varchar(3) NOT NULL,
-  `idCursus` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `resultat` varchar(6) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -59,12 +58,12 @@ CREATE TABLE `elementcursus` (
 --
 
 CREATE TABLE `etudiant` (
-  `nom` varchar(25) NOT NULL,
-  `prenom` varchar(20) NOT NULL,
-  `numero` int(5) NOT NULL,
-  `filliere` varchar(3) NOT NULL,
-  `admission` varchar(2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(6) NOT NULL,
+  `prenom` varchar(25) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `admission` varchar(4) NOT NULL,
+  `filiere` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -73,13 +72,13 @@ CREATE TABLE `etudiant` (
 --
 
 CREATE TABLE `regle` (
-  `label` varchar(3) NOT NULL,
-  `agregat` varchar(5) NOT NULL,
-  `cible` varchar(10) NOT NULL,
-  `affectation` float NOT NULL,
-  `seuil` int(11) NOT NULL,
-  `idReglement` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `num_regle` int(4) NOT NULL,
+  `action` varchar(10) NOT NULL,
+  `type` varchar(6) NOT NULL,
+  `temps_cursus` varchar(10) NOT NULL,
+  `credits` int(4) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88,9 +87,9 @@ CREATE TABLE `regle` (
 --
 
 CREATE TABLE `reglement` (
-  `id` int(11) NOT NULL,
-  `label` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `num_regle` int(4) NOT NULL,
+  `nom_reglement` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Index pour les tables exportées
@@ -100,34 +99,58 @@ CREATE TABLE `reglement` (
 -- Index pour la table `cursus`
 --
 ALTER TABLE `cursus`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `numeroEtu` (`numeroEtu`);
+  ADD PRIMARY KEY (`label`),
+  ADD KEY `etudiant` (`etudiant`),
+  ADD KEY `element_formation` (`element_formation`);
 
 --
--- Index pour la table `elementcursus`
+-- Index pour la table `element_formation`
 --
-ALTER TABLE `elementcursus`
+ALTER TABLE `element_formation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idCursus` (`idCursus`);
+  ADD KEY `sigle` (`sigle`);
 
 --
 -- Index pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  ADD PRIMARY KEY (`numero`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `regle`
 --
 ALTER TABLE `regle`
-  ADD PRIMARY KEY (`label`),
-  ADD KEY `idReglement` (`idReglement`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `num_regle` (`num_regle`);
 
 --
 -- Index pour la table `reglement`
 --
 ALTER TABLE `reglement`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`nom_reglement`),
+  ADD KEY `num_regle` (`num_regle`);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `cursus`
+--
+ALTER TABLE `cursus`
+  ADD CONSTRAINT `cursus_ibfk_1` FOREIGN KEY (`element_formation`) REFERENCES `element_formation` (`sigle`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cursus` (`etudiant`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `reglement`
+--
+ALTER TABLE `reglement`
+  ADD CONSTRAINT `reglement_ibfk_1` FOREIGN KEY (`num_regle`) REFERENCES `regle` (`num_regle`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
