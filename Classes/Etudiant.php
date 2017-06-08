@@ -3,18 +3,24 @@ session_start(); // sur toutes nos pages
 class etudiant {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 private $id;
 private $nom;
 private $prenom;
 private $admission;
 private $filiere;
 =======
+=======
+>>>>>>> grucheta
 private $id; //numéro étudiant
 private $nom; // chaine de char
 private $prenom; //chaine de car
 private $admission; // chaine de  car
 private $filiere; //chaine de car
 private $label_etu; // ISI1 ou ISI2...
+<<<<<<< HEAD
+>>>>>>> grucheta
+=======
 >>>>>>> grucheta
 
 
@@ -33,11 +39,19 @@ private $label_etu; // ISI1 ou ISI2...
     function getAdmission() {
         return $this->admission;
     }
+<<<<<<< HEAD
 
     function getFiliere() {
         return $this->filiere;
     }
 
+=======
+
+    function getFiliere() {
+        return $this->filiere;
+    }
+
+>>>>>>> grucheta
         function setId($id) {
         $id=(int)$id;
         if($id>=0){
@@ -97,6 +111,18 @@ private $label_etu; // ISI1 ou ISI2...
         }
       }
     }
+<<<<<<< HEAD
+=======
+
+    public function _AfficherEtu(){
+        
+    }
+    
+}
+
+
+
+>>>>>>> grucheta
 
     public function _AfficherEtu(){
         
