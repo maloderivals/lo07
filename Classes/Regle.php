@@ -2,13 +2,25 @@
 
 class Regle {
 
+    private $id;
     private $num_regle;
     private $action; //SUM ou EXIST
     private $type; //CS, TM...
     private $temps_cursus; //Concerne le TC, TCBR ou les deux
     private $credits; //Nombre de crédits nécessaires pour remplis la quantité.
 
-    function getNum_regle() {
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        if (is_int($id)){
+            $this->id = $id;
+        }
+    }
+
+        function getNum_regle() {
         return $this->num_regle;
     }
 
