@@ -23,4 +23,5 @@ $cpt = 0; //Permet de compter le nombre d'enregistrements réalisés
       $ligne = fgets($fp, 4096);
       $liste = explode(" ; ", $ligne); // On créé un tableau des éléments séparés par des ;
       $table = filter_input(INPUT_POST, 'userfile');
+      // foreach(   //récupérer ici chaque élément
   }
