@@ -1,6 +1,6 @@
 <?php
 
-session_start(); // sur toutes nos pages 
+//session_start(); // sur toutes nos pages 
 
 class etudiant {
 
@@ -40,13 +40,13 @@ class etudiant {
     //Modifier les setter et mettre des conditions pour éviter la casse
 
     function setNom($nom) {
-        if (is_string($nom) & strlen($nom) <= 30) {
+        if (is_string($nom) && strlen($nom) <= 30) {
             $this->nom = $nom;
         }
     }
 
     function setPrenom($prenom) {
-        if (is_string($prenom) & strlen($nom) <= 30) {
+        if (is_string($prenom) && strlen($prenom) <= 30) {
             $this->prenom = $prenom;
         }
     }
@@ -57,13 +57,13 @@ class etudiant {
 
         function setAdmission($admission) {
 
-        if (is_string($admission) & strlen($nom) <= 3) {
+        if (is_string($admission) && strlen($admission) <= 10) {
             $this->admission = $admission;
         }
     }
 
-    function setFilière($filiere) {
-        if (is_string($filiere) & strlen($nom) <= 3) {
+    function setFiliere($filiere) {
+        if (is_string($filiere) && strlen($filiere) <= 5) {
             $this->filiere = $filiere;
         }
     }

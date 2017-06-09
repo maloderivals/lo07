@@ -1,5 +1,5 @@
 <?php
-session_start(); // sur toutes nos pages 
+//session_start(); // sur toutes nos pages 
 
 class ElementFormation {
 
@@ -13,17 +13,9 @@ class ElementFormation {
     private $credit;
     private $resultat;
 
-    /*function __construct($sem_seq, $sem_label, $sigle, $categorie, $affectation, $utt, $profil, $credit, $resultat) {
-        $this->sem_seq = $sem_seq;
-        $this->sem_label = $sem_label;
-        $this->sigle = $sigle;
-        $this->categorie = $categorie;
-        $this->affectation = $affectation;
-        $this->utt = $utt;
-        $this->profil = $profil;
-        $this->credit = $credit;
-        $this->resultat = $resultat;
-    }*/
+    function __construct($donnes) {
+          $this->hydrate($donnes);
+    }
 
     public function __destruct() {      
         echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n" ;             
