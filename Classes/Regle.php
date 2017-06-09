@@ -10,6 +10,8 @@ class Regle {
     private $credits; //Nombre de crédits nécessaires pour remplis la quantité.
 
     
+   
+  
     function getId() {
         return $this->id;
     }
@@ -69,9 +71,28 @@ class Regle {
             $this->credits = $credits;
         }
     }
+    
+    public function hydrate(array $donnees)
+    {
+      foreach ($donnees as $key => $value)
+      {
+        $method = 'set'.ucfirst($key);
 
-    public function __toString() {
-        return "$this->num_regle, $this->action, $this->type, $this->temps_cursus, $this->credits.";
+        if (method_exists($this, $method))
+        {
+          $this->$method($value);
+        }
+      }
+    }
+  
+    public function __construct(array $donnees)
+    {
+      $this->hydrate($donnees);
+    }  
+
+     function __toString() 
+    {
+        return "$this->num_regle, $this->action, $this->type, $this->temps_cursus, $this->credits";
     }
 
 }
