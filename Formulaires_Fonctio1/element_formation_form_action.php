@@ -16,7 +16,7 @@ session_start(); // sur toutes nos pages
 
 
 include '../include/Formulaire_Dynamique_fonction.php';
-
+include '../Classes/ElementFormationManager.php';
 include '../Classes/ElementFormation.php';
 
 // Sous MAMP (Mac)

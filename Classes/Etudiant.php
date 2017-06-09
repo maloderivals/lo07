@@ -55,10 +55,8 @@ private $label_etu; // ISI1 ou ISI2...
             $this->prenom = $prenom;
         }
     }
-    function __construct($id, $nom, $prenom) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+    function __construct(array $donnee) {
+        $this->hydrate($donnee);
     }
     function setAdmission($admission) {
         
