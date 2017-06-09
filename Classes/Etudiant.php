@@ -1,15 +1,14 @@
 <?php
-session_start(); // sur toutes nos pages 
+
+//session_start(); // sur toutes nos pages 
+
 class etudiant {
 
-private $id; //numéro étudiant
-private $nom; // chaine de char
-private $prenom; //chaine de car
-private $admission; // chaine de  car
-private $filiere; //chaine de car
-private $label_etu; // ISI1 ou ISI2...
-
-
+    private $id; //numéro étudiant
+    private $nom; // chaine de char
+    private $prenom; //chaine de car
+    private $admission; // chaine de  car
+    private $filiere; //chaine de car
 
     function getId() {
         return $this->id;
@@ -22,6 +21,7 @@ private $label_etu; // ISI1 ou ISI2...
     function getPrenom() {
         return $this->prenom;
     }
+
     function getAdmission() {
         return $this->admission;
     }
@@ -30,68 +30,84 @@ private $label_etu; // ISI1 ou ISI2...
         return $this->filiere;
     }
 
-        function setId($id) {
-        $id=(int)$id;
-        if($id>=0){
-        $this->id = $id;
+    function setId($id) {
+        $id = (int) $id;
+        if ($id >= 0) {
+            $this->id = $id;
         }
     }
 
     //Modifier les setter et mettre des conditions pour éviter la casse
-    
+
     function setNom($nom) {
-        if(is_string($nom) & strlen($nom) <= 30){
+        if (is_string($nom) && strlen($nom) <= 30) {
             $this->nom = $nom;
         }
     }
 
     function setPrenom($prenom) {
-        if(is_string($prenom) & strlen($nom) <= 30 ){
+        if (is_string($prenom) && strlen($prenom) <= 30) {
             $this->prenom = $prenom;
         }
     }
+
     function setLabel_etu($label_etu) {
         if(is_string($prenom) & strlen($nom) <= 30 ){
             $this->prenom = $prenom;
         }
     }
-    function __construct(array $donnee) {
-        $this->hydrate($donnee);
+
+
+
+
+    function __construct(array $donnes) {
+        $this->hydrate($donnes);
+
     }
-    function setAdmission($admission) {
-        
-        if(is_string($admission) & strlen($nom) <= 3){
+
+        function setAdmission($admission) {
+
+        if (is_string($admission) && strlen($admission) <= 10) {
             $this->admission = $admission;
-    
         }
     }
 
-    function setFilière($filiere) {
-        if(is_string($filiere) & strlen($nom) <= 3){
+    function setFiliere($filiere) {
+        if (is_string($filiere) && strlen($filiere) <= 5) {
             $this->filiere = $filiere;
         }
     }
 
-    public function hydrate(array $donnees)
-    {
-      foreach ($donnees as $key => $value)
-      {
-        // On récupère le nom du setter correspondant à l'attribut.
-        $method = 'set'.ucfirst($key);
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
 
-        // Si le setter correspondant existe.
-        if (method_exists($this, $method))
-        {
-          // On appelle le setter.
-          $this->$method($value);
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
         }
+
      
       }
-    }
-    public function _AfficherEtu(){
-        
-    echo "hellpo";
     
+
+        
+
+    
+
+
+
+
+   
+
+    public function _AfficherEtu() {
+        
     }
- }
- ?>
+
+}
+
+?>
+

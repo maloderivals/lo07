@@ -2,11 +2,13 @@
 
 require_once 'Reglement.php';
 require_once 'Etudiant.php';
+require_once 'ElementFormation.php';
 
 
 class Cursus extends etudiant{
     private $label;
     private $etudiant;
+    private $elementFormation;
     
     function getLabel() {
         return $this->label;

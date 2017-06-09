@@ -1,6 +1,10 @@
 <?php
-session_start(); // sur toutes nos pages 
+
+
 include 'Cursus.php';
+
+//session_start(); // sur toutes nos pages 
+
 
 class ElementFormation extends Cursus{
 
@@ -14,8 +18,10 @@ class ElementFormation extends Cursus{
     private $credit;
     private $resultat;
 
-    function __construct(array $donnee) {
-        $this->hydrate($donnee);
+
+    function __construct($donnes) {
+          $this->hydrate($donnes);
+
     }
 
     public function __destruct() {      
