@@ -24,7 +24,7 @@ class ElementFormation {
     }
 
     public function __toString() {
-        return "Elément de formation : $this->sem_seq, $this->sem_label, "
+        return "Elément de formation : $this->id, $this->sem_seq, $this->sem_label, "
                 . "$this->sigle, $this->categorie, $this->affectation, $this->utt,"
                 . " $this->profil, $this->credit, $this->resultat.";
     }
@@ -104,13 +104,13 @@ class ElementFormation {
     }
 
     function setUtt($utt) {
-        if (is_bool($utt)) {
+        if ($utt === "Y" || $utt === "N") {
             $this->utt = $utt;
         }
     }
 
     function setProfil($profil) {
-        if (is_bool($profil)) {
+        if ($profil === "Y" || $profil === "N") {
             $this->profil = $profil;
         }
     }
@@ -127,7 +127,7 @@ class ElementFormation {
         }
     }
 
-    function hydrate(array $donnees) {
+    public function hydrate(array $donnees) {
         foreach ($donnees as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);

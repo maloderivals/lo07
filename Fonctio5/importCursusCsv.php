@@ -52,21 +52,18 @@ $ligne = fgets($fp, 4096);
 $ligne = fgets($fp, 4096);
 $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
 $table = filter_input(INPUT_POST, 'userfile');
-print_r($liste);
 
 while ($liste[0] !== "END") {
     if ($liste[0] === "EL") {
         $elementForm = array("id" => $liste[3] . $etudiant->getId());
-        print_r("id EF : ".$elementForm["id"]);
         for ($i = 0; $i < 9; $i++) {
-            $temp = $liste[$i + 1];
-            $elementForm[] = array($attributs[$i] => $temp);   //Récupère les attributs de l'élément de formation en cours
-            $y = $i + 1;
-            print_r("element $i : " . $elementForm[$attributs[$i]] . " $temp</br>");
+            $elementForm[$attributs[$i]] = $liste[$i + 1];   //Récupère les attributs de l'élément de formation en cours
         }
-        print_r("id EF bis :".$elementForm["sigle"] . $etudiant->getId());
+        foreach ($elementForm as $key => $value) {
+                print_r("clé : " . $key . " valeur : " . $value . "\n</br>");
+            }
         $elementFormation = new ElementFormation($elementForm);
-        //print_r("élément : $elementFormation");
+        print_r("élément : $elementFormation </br>");
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation);
     }
@@ -78,4 +75,4 @@ while ($liste[0] !== "END") {
 fclose($fp);
 ?>
 
-<h2>Fin de l'import du cursus !</h2>
+<h2><p align="center">Fin de l'import du cursus !</p></h2>

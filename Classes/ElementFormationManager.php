@@ -9,8 +9,7 @@ class ElementFormationManager {
     $this->setDb($db);
   }
 
-  public function add(ElementFormation $elem)
-  {
+  public function add(ElementFormation $elem){
     // Préparation de la requête d'insertion.
     // Assignation des valeurs 
     // Exécution de la requête.
@@ -30,14 +29,12 @@ class ElementFormationManager {
       
   }
 
-  public function delete(ElementFormation $elem)
-  {
+  public function delete(ElementFormation $elem){
     // Exécute une requête de type DELETE.
       $this->_db->exec('DELETE FROM element_formation WHERE id='.$elem->getId());
   }
 
-  public function get($id)
-  {
+  public function get($id){
     // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet ElementFormation.
       $q=$this->_db->query('SELECT * FROM element_formation WHERE id='.$id);
       
@@ -46,8 +43,7 @@ class ElementFormationManager {
       return new ElementFormation($donnee);
   }
 
-  public function getList()
-  {
+  public function getList(){
     $elem = [];
 
     $q = $this->_db->query('SELECT * FROM element_formation ORDER BY categorie & sigle');
@@ -62,8 +58,7 @@ class ElementFormationManager {
 
   
   
-  public function update(ElementFormation $elem)
-  {
+  public function update(ElementFormation $elem){
     // Prépare une requête de type UPDATE.
     // Assignation des valeurs à la requête.
     // Exécution de la requête.
