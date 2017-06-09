@@ -69,7 +69,7 @@ class ElementFormation {
         return $this->resultat;
     }
 
-    function setId($id) {
+    function setId(string $id) {
         $this->id = $id;
     }
 
