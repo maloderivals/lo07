@@ -59,11 +59,13 @@ while ($liste[0] !== "END") {
         for ($i = 0; $i < 9; $i++) {
             $elementForm[$attributs[$i]] = $liste[$i + 1];   //Récupère les attributs de l'élément de formation en cours
         }
-        foreach ($elementForm as $key => $value) {
-                print_r("clé : " . $key . " valeur : " . $value . "\n</br>");
-            }
         $elementFormation = new ElementFormation($elementForm);
-        print_r("élément : $elementFormation </br>");
+        print_r($elementFormation->getSem_seq() . "</br>");
+        if (is_int($elementFormation->getSem_seq())) {
+            print_r("int yes </br>");
+        } else {
+            echo "no ! </br>";
+        }
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation);
     }

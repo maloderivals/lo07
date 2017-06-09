@@ -20,7 +20,7 @@ class ElementFormation {
     }
 
     public function __destruct() {
-        echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
+        echo ">> class module : destruct ($this->id, $this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
     }
 
     public function __toString() {
@@ -73,34 +73,24 @@ class ElementFormation {
         $this->id = $id;
     }
 
-    function setSem_seq($sem_seq) {
-        //if (is_int($sem_seq)) {
-            $this->sem_seq = $sem_seq;
-        //}
+    function setSem_seq(int $sem_seq) {
+        $this->sem_seq = $sem_seq;
     }
 
-    function setSem_label($sem_label) {
-        if (is_string($sem_label)) {
-            $this->sem_label = $sem_label;
-        }
+    function setSem_label(string $sem_label) {
+        $this->sem_label = $sem_label;
     }
 
-    function setSigle($sigle) {
-        if (is_string($sigle)) {
-            $this->sigle = $sigle;
-        }
+    function setSigle(string $sigle) {
+        $this->sigle = $sigle;
     }
 
-    function setCategorie($categorie) {
-        if (is_string($categorie)) {
-            $this->categorie = $categorie;
-        }
+    function setCategorie(string $categorie) {
+        $this->categorie = $categorie;
     }
 
-    function setAffectation($affectation) {
-        if (is_string($affectation)) {
-            $this->affectation = $affectation;
-        }
+    function setAffectation(string $affectation) {
+        $this->affectation = $affectation;
     }
 
     function setUtt($utt) {
@@ -115,16 +105,12 @@ class ElementFormation {
         }
     }
 
-    function setCredit($credit) {
-        //if (is_int($credit)) {
-            $this->credit = $credit;
-        //}
+    function setCredit(int $credit) {
+        $this->credit = $credit;
     }
 
-    function setResultat($resultat) {
-        if (is_string($resultat)) {
-            $this->resultat = $resultat;
-        }
+    function setResultat(string $resultat) {
+        $this->resultat = $resultat;
     }
 
     public function hydrate(array $donnees) {
