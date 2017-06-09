@@ -1,8 +1,7 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+//cette page enregistre les informationjs dans la base de donné
+// Cette page peut me renvoiyer à l'acceuil
+// Cette page 
 

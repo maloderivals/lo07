@@ -1,7 +1,8 @@
 <?php
 session_start(); // sur toutes nos pages 
+include 'Cursus.php';
 
-class ElementFormation {
+class ElementFormation extends Cursus{
 
     private $sem_seq; //
     private $sem_label;
