@@ -74,9 +74,9 @@ class ElementFormation {
     }
 
     function setSem_seq($sem_seq) {
-        if (is_int($sem_seq)) {
+        //if (is_int($sem_seq)) {
             $this->sem_seq = $sem_seq;
-        }
+        //}
     }
 
     function setSem_label($sem_label) {
@@ -116,9 +116,9 @@ class ElementFormation {
     }
 
     function setCredit($credit) {
-        if (is_int($credit)) {
+        //if (is_int($credit)) {
             $this->credit = $credit;
-        }
+        //}
     }
 
     function setResultat($resultat) {

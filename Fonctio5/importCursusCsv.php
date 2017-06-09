@@ -39,7 +39,7 @@ $hashEtu = array("id" => $etu[0], "nom" => $etu[1], "prenom" => $etu[2], "admiss
 $etudiant = new etudiant($hashEtu);
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager_etu = new EtudiantManager($bdd);
-//$manager_etu->add($etudiant);
+$manager_etu->add($etudiant);
 
 
 
