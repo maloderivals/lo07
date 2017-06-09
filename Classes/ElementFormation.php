@@ -1,9 +1,11 @@
 <?php
+
 //session_start(); // sur toutes nos pages 
 
 class ElementFormation {
 
-    private $sem_seq; //
+    private $id;
+    private $sem_seq;
     private $sem_label;
     private $sigle;
     private $categorie;
@@ -14,17 +16,21 @@ class ElementFormation {
     private $resultat;
 
     function __construct($donnes) {
-          $this->hydrate($donnes);
+        $this->hydrate($donnes);
     }
 
-    public function __destruct() {      
-        echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n" ;             
+    public function __destruct() {
+        echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
     }
 
     public function __toString() {
         return "Elément de formation : $this->sem_seq, $this->sem_label, "
                 . "$this->sigle, $this->categorie, $this->affectation, $this->utt,"
                 . " $this->profil, $this->credit, $this->resultat.";
+    }
+
+    function getId() {
+        return $this->id;
     }
 
     function getSem_seq() {
@@ -63,78 +69,77 @@ class ElementFormation {
         return $this->resultat;
     }
 
+    function setId($id) {
+        $this->id = $id;
+    }
+
     function setSem_seq($sem_seq) {
-        if (is_int($sem_seq)){
+        if (is_int($sem_seq)) {
             $this->sem_seq = $sem_seq;
         }
     }
 
     function setSem_label($sem_label) {
-        if(is_string($sem_label)){
-        $this->sem_label = $sem_label;
+        if (is_string($sem_label)) {
+            $this->sem_label = $sem_label;
         }
     }
 
     function setSigle($sigle) {
-        if(is_string($sigle)){
+        if (is_string($sigle)) {
             $this->sigle = $sigle;
         }
     }
 
     function setCategorie($categorie) {
-        if(is_string($categorie)){
+        if (is_string($categorie)) {
             $this->categorie = $categorie;
         }
     }
 
     function setAffectation($affectation) {
-        if(is_string($affectation)){
-        $this->affectation = $affectation;
+        if (is_string($affectation)) {
+            $this->affectation = $affectation;
         }
     }
 
     function setUtt($utt) {
-        if(is_bool($utt)){
+        if (is_bool($utt)) {
             $this->utt = $utt;
         }
     }
 
     function setProfil($profil) {
-        if(is_bool($profil)){
+        if (is_bool($profil)) {
             $this->profil = $profil;
         }
     }
 
     function setCredit($credit) {
-        if(is_int($credit)){
-        $this->credit = $credit;
-        }    
+        if (is_int($credit)) {
+            $this->credit = $credit;
+        }
     }
 
     function setResultat($resultat) {
-        if(is_string($resultat)){
-        $this->resultat = $resultat;
+        if (is_string($resultat)) {
+            $this->resultat = $resultat;
         }
     }
 
-    
-    function hydrate(array $donnees)
-    {
-      foreach ($donnees as $key => $value)
-      {
-        // On récupère le nom du setter correspondant à l'attribut.
-        $method = 'set'.ucfirst($key);
+    function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
 
-        // Si le setter correspondant existe.
-        if (method_exists($this, $method))
-        {
-          // On appelle le setter.
-          $this->$method($value);
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
         }
-      }
     }
-    
-    
+
 }
 
 ?>

@@ -22,7 +22,7 @@ if ($fichier) { //ouverture du fichier temporaire
     exit();
 }
 ?>
-<p align="center">- Importation réussie -</p>
+<p align="center">- Fichier trouvé -</p>
 
 <?php
 //Importation de l'étu
@@ -39,33 +39,40 @@ $hashEtu = array("id" => $etu[0], "nom" => $etu[1], "prenom" => $etu[2], "admiss
 $etudiant = new etudiant($hashEtu);
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager_etu = new EtudiantManager($bdd);
-$manager_etu->add($etudiant);
+//$manager_etu->add($etudiant);
 
 
+
+
+$attributs = array("sem_seq", "sem_label", "sigle", "categorie", "affectation", "utt", "profil", "credit", "resultat");
 
 //Importation des éléments du cursus de l'étu
+
 $ligne = fgets($fp, 4096);
-$liste = explode(";", $ligne);
+$ligne = fgets($fp, 4096);
+$liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
 $table = filter_input(INPUT_POST, 'userfile');
-$attributs = array();
-for ($i = 0 ; $i < 9; $i++ ) {
-    $attributs[$i] = $liste[$i+1];
-}
+print_r($liste);
 
 while ($liste[0] !== "END") {
+    if ($liste[0] === "EL") {
+        $elementForm = array("id" => $liste[3] . $etudiant->getId());
+        print_r("id EF : ".$elementForm["id"]);
+        for ($i = 0; $i < 9; $i++) {
+            $temp = $liste[$i + 1];
+            $elementForm[] = array($attributs[$i] => $temp);   //Récupère les attributs de l'élément de formation en cours
+            $y = $i + 1;
+            print_r("element $i : " . $elementForm[$attributs[$i]] . " $temp</br>");
+        }
+        print_r("id EF bis :".$elementForm["sigle"] . $etudiant->getId());
+        $elementFormation = new ElementFormation($elementForm);
+        //print_r("élément : $elementFormation");
+        $manager_elementFormation = new ElementFormationManager($bdd);
+        $manager_elementFormation->add($elementFormation);
+    }
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
     $table = filter_input(INPUT_POST, 'userfile');
-    if ($liste[0] === "EL") {
-        $elementForm = array(); //Récupère les attributs de l'élément de formation en cours
-
-        for($i = 0; $i < 9; $i++) { 
-            $elementForm[$i] += array ($attributs[$i] => $liste[$i]);
-        }
-    }
-    $elementFormation = new ElementFormation($elementForm);
-    $manager_elementFormation = new ElementFormationManager($bdd);
-    $manager_elementFormation->add($elementFormation);
 }
 //Fermeture du fichier
 fclose($fp);
