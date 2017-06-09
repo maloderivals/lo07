@@ -9,7 +9,6 @@ class etudiant {
     private $prenom; //chaine de car
     private $admission; // chaine de  car
     private $filiere; //chaine de car
-    private $label_etu; // ISI1 ou ISI2...
 
     function getId() {
         return $this->id;
@@ -52,19 +51,11 @@ class etudiant {
         }
     }
 
-    function setLabel_etu($label_etu) {
-        if (is_string($prenom) & strlen($nom) <= 30) {
-            $this->prenom = $prenom;
-        }
+    function __construct(array $donnes) {
+        $this->hydrate($donnes);
     }
 
-    function __construct($id, $nom, $prenom) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-    }
-
-    function setAdmission($admission) {
+        function setAdmission($admission) {
 
         if (is_string($admission) & strlen($nom) <= 3) {
             $this->admission = $admission;
