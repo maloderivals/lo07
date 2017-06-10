@@ -6,6 +6,8 @@ include '../Classes/Etudiant.php';
 include '../Classes/EtudiantManager.php';
 include '../Classes/ElementFormation.php';
 include '../Classes/ElementFormationManager.php';
+include '../Classes/Cursus.php';
+include '../Classes/CursusManager.php';
 
 
 
@@ -60,19 +62,20 @@ while ($liste[0] !== "END") {
             $elementForm[$attributs[$i]] = $liste[$i + 1];   //Récupère les attributs de l'élément de formation en cours
         }
         $elementFormation = new ElementFormation($elementForm);
-        print_r($elementFormation->getSem_seq() . "</br>");
-        if (is_int($elementFormation->getSem_seq())) {
-            print_r("int yes </br>");
-        } else {
-            echo "no ! </br>";
-        }
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation);
+        $cursus = new Cursus($fichier, $etudiant->getId(), $elementFormation->getId());
+        $manager_cursus = new CursusManager($bdd);
+        //$manager_cursus->add($cursus); ==> Problème : label pas du tout unique !!!
     }
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
     $table = filter_input(INPUT_POST, 'userfile');
 }
+
+//Création du cursus dans la table Cursus 
+//--> et si on le mettait avec l'élément de formation et qu'on l'ajoutait à chaque nouvel élément ??
+// label = nom du fichier
 //Fermeture du fichier
 fclose($fp);
 ?>
