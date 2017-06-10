@@ -19,9 +19,9 @@ class ElementFormation {
         $this->hydrate($donnes);
     }
 
-    public function __destruct() {
+    /*public function __destruct() {
         echo ">> class module : destruct ($this->id, $this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
-    }
+    }*/
 
     public function __toString() {
         return "Elément de formation : $this->id, $this->sem_seq, $this->sem_label, "
