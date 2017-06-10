@@ -27,6 +27,10 @@ if ($fichier) { //ouverture du fichier temporaire
 <p align="center">- Fichier trouvé -</p>
 
 <?php
+$nom = $fichier->getElementbyID;
+print_r("Label : ".$nom);
+
+
 //Importation de l'étu
 $etu = array();
 for ($i = 0; $i < 5; $i ++) {
@@ -41,16 +45,18 @@ $hashEtu = array("id" => $etu[0], "nom" => $etu[1], "prenom" => $etu[2], "admiss
 $etudiant = new etudiant($hashEtu);
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager_etu = new EtudiantManager($bdd);
-$manager_etu->add($etudiant);
+//$manager_etu->add($etudiant);
 
 
-
+//Création du cursus
+// label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
+$cursus_etu = new Cursus($fichier, $etudiant->getId());
+$manager_cursus = new CursusManager($bdd);
+$manager_cursus->add($cursus_etu);
 
 $attributs = array("sem_seq", "sem_label", "sigle", "categorie", "affectation", "utt", "profil", "credit", "resultat");
 
-//Importation des éléments du cursus de l'étu
-
-$ligne = fgets($fp, 4096);
+//Importation des éléments du cursus de l'étudiant
 $ligne = fgets($fp, 4096);
 $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
 $table = filter_input(INPUT_POST, 'userfile');
@@ -64,18 +70,15 @@ while ($liste[0] !== "END") {
         $elementFormation = new ElementFormation($elementForm);
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation);
-        $cursus = new Cursus($fichier, $etudiant->getId(), $elementFormation->getId());
-        $manager_cursus = new CursusManager($bdd);
-        //$manager_cursus->add($cursus); ==> Problème : label pas du tout unique !!!
+        $manager_elementFormation->addToCursus($cursus_etu);
+        
     }
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
     $table = filter_input(INPUT_POST, 'userfile');
 }
 
-//Création du cursus dans la table Cursus 
-//--> et si on le mettait avec l'élément de formation et qu'on l'ajoutait à chaque nouvel élément ??
-// label = nom du fichier
+
 //Fermeture du fichier
 fclose($fp);
 ?>

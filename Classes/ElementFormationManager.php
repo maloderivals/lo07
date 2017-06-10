@@ -1,4 +1,5 @@
 <?php
+include 'Cursus.php';
 
 class ElementFormationManager {
 
@@ -27,6 +28,11 @@ class ElementFormationManager {
       
       $q->execute();
       
+  }
+  
+  public function addToCursus(Cursus $cursus) {
+      $q = $this->_db->prepare("INSERT INTO element_formation(cursus) VALUES (:cursus)");
+      $q->bindValue(':cursus', $cursus->getLabel());
   }
 
   public function delete(ElementFormation $elem){
