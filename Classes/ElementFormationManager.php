@@ -1,5 +1,4 @@
 <?php
-include 'Cursus.php';
 
 class ElementFormationManager {
 

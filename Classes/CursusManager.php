@@ -25,7 +25,7 @@ private $_db; // Instance de PDO.
     // Préparation de la requête d'insertion.
     // Assignation des valeurs.
     // Exécution de la requête.
-      $q=$this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu");
+      $q=$this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu)");
       $q->bindValue(':label',$cursus->getLabel());
       $q->bindValue(':etu',$cursus->getEtudiant());
       

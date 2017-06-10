@@ -27,9 +27,6 @@ if ($fichier) { //ouverture du fichier temporaire
 <p align="center">- Fichier trouvé -</p>
 
 <?php
-$nom = $fichier->getElementbyID;
-print_r("Label : ".$nom);
-
 
 //Importation de l'étu
 $etu = array();
@@ -45,12 +42,13 @@ $hashEtu = array("id" => $etu[0], "nom" => $etu[1], "prenom" => $etu[2], "admiss
 $etudiant = new etudiant($hashEtu);
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager_etu = new EtudiantManager($bdd);
-//$manager_etu->add($etudiant);
+$manager_etu->add($etudiant);
 
 
 //Création du cursus
 // label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
-$cursus_etu = new Cursus($fichier, $etudiant->getId());
+$nom = basename($_FILES['userfile']['name'],'.csv');
+$cursus_etu = new Cursus($nom, $etudiant->getId());
 $manager_cursus = new CursusManager($bdd);
 $manager_cursus->add($cursus_etu);
 
