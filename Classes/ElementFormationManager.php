@@ -14,8 +14,8 @@ class ElementFormationManager {
     // Préparation de la requête d'insertion.
     // Assignation des valeurs 
     // Exécution de la requête.
-      $q=$this->_db->prepare('INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)');
-      $q->bindValue(':id',$elem->getId());
+      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES('', :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)");
+      //$q->bindValue(':id',$elem->getId());
       $q->bindValue(':sem_seq',$elem->getSem_seq());
       $q->bindValue(':sem_label',$elem->getSem_label());
       $q->bindValue(':sigle',$elem->getSigle());

@@ -44,13 +44,12 @@ $manager = new ElementFormationManager($db);
             oui <input type="radio" name="utt" value="Y"/>
             non <input type="radio" name="utt" value="N"/>
             
-            <label for="profil"> L'UE a-t-elle était suivis à l'UTT ? </label>
+            <label for="profil"> L'UE est-elle dans votre profil ? </label>
             oui <input type="radio" name="profil" value="Y"/>
             non <input type="radio" name="profil" value="N"/>
             
             <?php
-            echo "</div>";
-            input('profil', 'text', 'profil', "L'UV fait-elle partus de votre profil ?");
+            
             echo "<div>";
             input('credit', 'text', 'credit', 'Combien de crédit avez-vous obtenus ?');
             echo "</div>";

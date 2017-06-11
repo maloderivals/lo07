@@ -29,8 +29,7 @@ class Cursus extends etudiant{
     }
 
     function __construct($label, $etudiant) {
-        $this->label = $label;
-        $this->etudiant = $etudiant;
+        $this->hydrate($donnees);
     }
 
 
