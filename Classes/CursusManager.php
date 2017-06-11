@@ -20,65 +20,59 @@ private $_db; // Instance de PDO.
     $this->setDb($db);
   }
 
-  public function add(etudiant $etu)
+  public function add(Cursus $cursus)
   {
     // Préparation de la requête d'insertion.
     // Assignation des valeurs.
     // Exécution de la requête.
-      $q=$this->_db->prepare('INSERT INTO etudiant(id, nom, prenom, admission, filiere) VALUES(:id, :nom, :prenom, :admission, :filiere)');
-      $q->bindValue(':id',$etu->getId());
-      $q->bindValue(':nom',$etu->getNom());
-      $q->bindValue(':prenom',$etu->getPrenom());
-      $q->bindValue(':admission',$etu->getAdmission());
-      $q->bindValue(':filiere',$etu->getFiliere());
+      $q=$this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu)");
+      $q->bindValue(':label',$cursus->getLabel());
+      $q->bindValue(':etu',$cursus->getEtudiant());
+      
       $q->execute();
       
   }
 
-  public function delete(etudiant $etu)
+  public function delete(Cursus $cursus)
   {
     // Exécute une requête de type DELETE.
-      $this->_db->exec('DELETE FROM etudiant WHERE id='.$etu->getId());
+      $this->_db->exec('DELETE FROM cursus WHERE label='.$cursus->getLabel());
   }
 
-  public function get($id)
+  public function get($label)
   {
     // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
-      $q=$this->_db->query('SELECT * FROM etudiant WHERE id='.$id);
+      $q=$this->_db->query('SELECT * FROM cursus WHERE label='.$label);
       
       $donnee = $q->fetch(PDO::FETCH_ASSOC);
       
-      return new etudiant($donnees);
+      return new etudiant($donnee);
   }
 
   public function getList()
   {
-    $etudiant = [];
+    $cursus = [];
 
-    $q = $this->_db->query('SELECT * FROM etudiant ORDER BY nom');
+    $q = $this->_db->query('SELECT e.* FROM cursus c, element_formation e WHERE e.cursus = c.label ORDER BY sem_seq');
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
-      $etudiant[] = new etudiant($donnees);
+      $cursus[] = new Cursus($donnees);
     }
 
-    return $etudiant;    
+    return $cursus;    
   }
 
   
   
-  public function update(etudiant $etu)
+  public function update(cursus $cursus)
   {
     // Prépare une requête de type UPDATE.
     // Assignation des valeurs à la requête.
     // Exécution de la requête.
-      $q=$this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom=:prenom, admission = :admission, filiere = :filiere WHERE id = :id');
-      $q->bindValue(':id',$etu->getId(),PDO::PARAM_INT);
-      $q->bindValue(':nom',$etu->getNom(),PDO::PARAM_INT);
-      $q->bindValue(':prenom',$etu->getNom(),PDO::PARAM_INT);
-      $q->bindValue(':admission',$etu->getAdmission(),PDO::PARAM_INT);
-      $q->bindValue(':filiere',$etu->getFiliere(),PDO::PARAM_INT);
-      
+      $q=$this->_db->prepare('UPDATE cursus SET etudiant = :etudiant = :element WHERE label = :label');
+      $q->bindValue(':label',$cursus->getLabel(),PDO::PARAM_INT);
+      $q->bindValue(':etudiant',$cursus->getEtudiant(),PDO::PARAM_INT);
   }
 
   public function setDb(PDO $db)

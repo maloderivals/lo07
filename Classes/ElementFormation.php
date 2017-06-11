@@ -1,14 +1,18 @@
 <?php
 
 
-include 'Cursus.php';
 
-//session_start(); // sur toutes nos pages 
+
+
+
+
+
 
 
 class ElementFormation extends Cursus{
 
-    private $sem_seq; //
+    private $id;
+    private $sem_seq;
     private $sem_label;
     private $sigle;
     private $categorie;
@@ -20,18 +24,26 @@ class ElementFormation extends Cursus{
 
 
     function __construct($donnes) {
+
           $this->hydrate($donnes);
 
+
+
+
     }
 
-    public function __destruct() {      
-        echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n" ;             
-    }
+    /*public function __destruct() {
+        echo ">> class module : destruct ($this->id, $this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
+    }*/
 
     public function __toString() {
-        return "Elément de formation : $this->sem_seq, $this->sem_label, "
+        return "Elément de formation : $this->id, $this->sem_seq, $this->sem_label, "
                 . "$this->sigle, $this->categorie, $this->affectation, $this->utt,"
                 . " $this->profil, $this->credit, $this->resultat.";
+    }
+
+    function getId() {
+        return $this->id;
     }
 
     function getSem_seq() {
@@ -70,78 +82,63 @@ class ElementFormation extends Cursus{
         return $this->resultat;
     }
 
-    function setSem_seq($sem_seq) {
-        if (is_int($sem_seq)){
-            $this->sem_seq = $sem_seq;
-        }
+    function setId(string $id) {
+        $this->id = $id;
     }
 
-    function setSem_label($sem_label) {
-        if(is_string($sem_label)){
+    function setSem_seq(int $sem_seq) {
+        $this->sem_seq = $sem_seq;
+    }
+
+    function setSem_label(string $sem_label) {
         $this->sem_label = $sem_label;
-        }
     }
 
-    function setSigle($sigle) {
-        if(is_string($sigle)){
-            $this->sigle = $sigle;
-        }
+    function setSigle(string $sigle) {
+        $this->sigle = $sigle;
     }
 
-    function setCategorie($categorie) {
-        if(is_string($categorie)){
-            $this->categorie = $categorie;
-        }
+    function setCategorie(string $categorie) {
+        $this->categorie = $categorie;
     }
 
-    function setAffectation($affectation) {
-        if(is_string($affectation)){
+    function setAffectation(string $affectation) {
         $this->affectation = $affectation;
-        }
     }
 
     function setUtt($utt) {
-        if(is_bool($utt)){
+        if ($utt === "Y" || $utt === "N") {
             $this->utt = $utt;
         }
     }
 
     function setProfil($profil) {
-        if(is_bool($profil)){
+        if ($profil === "Y" || $profil === "N") {
             $this->profil = $profil;
         }
     }
 
-    function setCredit($credit) {
-        if(is_int($credit)){
+    function setCredit(int $credit) {
         $this->credit = $credit;
-        }    
     }
 
-    function setResultat($resultat) {
-        if(is_string($resultat)){
+    function setResultat(string $resultat) {
         $this->resultat = $resultat;
+    }
+
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
         }
     }
 
-    
-    function hydrate(array $donnees)
-    {
-      foreach ($donnees as $key => $value)
-      {
-        // On récupère le nom du setter correspondant à l'attribut.
-        $method = 'set'.ucfirst($key);
-
-        // Si le setter correspondant existe.
-        if (method_exists($this, $method))
-        {
-          // On appelle le setter.
-          $this->$method($value);
-        }
-      }
-    }
-    
-    
 }
 
 ?>

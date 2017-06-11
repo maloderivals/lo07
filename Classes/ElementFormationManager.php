@@ -9,13 +9,17 @@ class ElementFormationManager {
     $this->setDb($db);
   }
 
-  public function add(ElementFormation $elem)
-  {
+  public function add(ElementFormation $elem){
     // Préparation de la requête d'insertion.
     // Assignation des valeurs 
     // Exécution de la requête.
-      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES('', :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)");
-      //$q->bindValue(':id',$elem->getId());
+
+
+
+
+      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)");
+      $q->bindValue(':id',$elem->getId());
+
       $q->bindValue(':sem_seq',$elem->getSem_seq());
       $q->bindValue(':sem_label',$elem->getSem_label());
       $q->bindValue(':sigle',$elem->getSigle());
@@ -29,25 +33,27 @@ class ElementFormationManager {
       $q->execute();
       
   }
+  
+  public function addToCursus(Cursus $cursus) {
+      $q = $this->_db->prepare("INSERT INTO element_formation(cursus) VALUES (:cursus)");
+      $q->bindValue(':cursus', $cursus->getLabel());
+  }
 
-  public function delete(ElementFormation $elem)
-  {
+  public function delete(ElementFormation $elem){
     // Exécute une requête de type DELETE.
       $this->_db->exec('DELETE FROM element_formation WHERE id='.$elem->getId());
   }
 
-  public function get($id)
-  {
+  public function get($id){
     // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet ElementFormation.
       $q=$this->_db->query('SELECT * FROM element_formation WHERE id='.$id);
       
       $donnee = $q->fetch(PDO::FETCH_ASSOC);
       
-      return new ElementFormation($donnees);
+      return new ElementFormation($donnee);
   }
 
-  public function getList()
-  {
+  public function getList(){
     $elem = [];
 
     $q = $this->_db->query('SELECT * FROM element_formation ORDER BY categorie & sigle');
@@ -62,8 +68,7 @@ class ElementFormationManager {
 
   
   
-  public function update(ElementFormation $elem)
-  {
+  public function update(ElementFormation $elem){
     // Prépare une requête de type UPDATE.
     // Assignation des valeurs à la requête.
     // Exécution de la requête.
