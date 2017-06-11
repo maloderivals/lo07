@@ -19,11 +19,18 @@ private $_db; // Instance de PDO.
     $this->setDb($db);
   }
 
-  public function add(Personnage $perso)
+  public function add(Reglement $reglement)
   {
     // Préparation de la requête d'insertion.
-    // Assignation des valeurs pour le nom, la force, les dégâts, l'expérience et le niveau du personnage.
+      $q=$this->_db->prepare('INSERT INTO reglement(id_reglement, nom_reglement) VALUES(:id, :nom_reglement)');
+    
+    // Assignation des valeurs.
+      $q->bindValue(':id',$reglement->getId());
+      $q->bindValue(':nom_reglement',$reglement->getNum_regle());
+      
     // Exécution de la requête.
+      $q->execute();
+      
   }
 
   public function delete(Personnage $perso)

@@ -6,6 +6,7 @@ class Reglement extends Regle{
 
     private $regles = array();
     private $nom_reglement;
+    private $id_reglement;
 
     function getNom_reglement() {
         return $this->nom_reglement;
@@ -19,27 +20,35 @@ class Reglement extends Regle{
         return $this->regles;
     }
 
-    function setRegles($regles) {
+    function getId_reglement() {
+        return $this->id_reglement;
+    }
+
+    function setId_reglement($id_reglement) {
+        $this->id_reglement = $id_reglement;
+    }
+
+        function setRegles($regles) {
         if(is_array($regles)){
             $this->regles = $regles;
         }
     }
 
-    //A modifier c'est juste pour essayer de poser des bases
+    function __construct(array $donnes) {
+        $this->hydrate($donnes);
+    }
     
-    function creerReglement($filename) {
-        foreach ($filename as $key => $value) { //parcourir chaque ligne du fichier (retrouver la bonne formulation)
-            $line = fgetcsv($filename, $length);
-            $temp = explode(";", $line);
-            $rule = new Regle();
-            $rule->setNum_regle($temp(0));
-            $rule->setAction($temp(1));
-            $rule->setType($temp(2));
-            $rule->setTemps_cursus($temp(3));
-            $rule->setCredits($temp(4));
-            $regles(); //Ajouter $rule à la fin
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
         }
-        return $regles;
     }
 
 }

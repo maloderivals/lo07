@@ -11,11 +11,21 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h2>Choisis ton csv p'tit gars</h2>
+        <div>
+        <h2>Choisis ton cursus p'tit gars</h2>
         <form method="post" enctype="multipart/form-data" action="importCursusCsv.php">
+            <input name ="userfile" type="file" value="table" />
+            <input name="submit" type="submit" value="Importer"/><br>
+        </form>
+        </div>
+        
+        <div>
+        <h2>Choisis ton règlement poto</h2>
+        <form method="post" enctype="multipart/form-data" action="../Fonctio3/importReglement.php">
             <input name ="userfile" type="file" value="table" />
             <input name="submit" type="submit" value="Importer"/>
         </form>
+        </div>
     </body>
     
 </html>

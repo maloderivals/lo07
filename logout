@@ -1,0 +1,20 @@
+[1mdiff --git a/nbproject/private/config.properties b/nbproject/private/config.properties[m
+[1mindex 6cd0516..c513788 100644[m
+[1m--- a/nbproject/private/config.properties[m
+[1m+++ b/nbproject/private/config.properties[m
+[36m@@ -1 +1 @@[m
+[31m-config=local[m
+[32m+[m[32mconfig=propertiesMalo[m
+[1mdiff --git a/nbproject/private/private.properties b/nbproject/private/private.properties[m
+[1mindex 877740b..6ed68bd 100644[m
+[1m--- a/nbproject/private/private.properties[m
+[1m+++ b/nbproject/private/private.properties[m
+[36m@@ -1,7 +1,7 @@[m
+ auxiliary.org-netbeans-modules-php-editor.fluent_2e_setter_2e_project_2e_property=false[m
+ auxiliary.org-netbeans-modules-php-editor.getter_2e_setter_2e_method_2e_name_2e_generation=AS_JAVA[m
+ auxiliary.org-netbeans-modules-php-editor.public_2e_modifier_2e_project_2e_property=false[m
+[31m-browser.id=Chrome.INTEGRATED[m
+[32m+[m[32mbrowser.id=default[m
+ copy.src.files=true[m
+ copy.src.on.open=false[m
+ copy.src.target=/Applications/MAMP/htdocs/lo07[m
