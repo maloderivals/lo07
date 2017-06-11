@@ -9,7 +9,7 @@
 
 
 
-class ElementFormation extends Cursus{
+class ElementFormation {
 
     private $id;
     private $sem_seq;
