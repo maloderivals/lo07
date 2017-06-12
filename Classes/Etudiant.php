@@ -38,14 +38,14 @@ class etudiant {
 
     //Modifier les setter et mettre des conditions pour éviter la casse
 
-    function setNom($nom) {
-        if (is_string($nom) && strlen($nom) <= 30) {
+    function setNom(string $nom) {
+        if (strlen($nom) <= 30) {
             $this->nom = $nom;
         }
     }
 
-    function setPrenom($prenom) {
-        if (is_string($prenom) && strlen($prenom) <= 30) {
+    function setPrenom(string $prenom) {
+        if (strlen($prenom) <= 30) {
             $this->prenom = $prenom;
         }
     }
@@ -54,15 +54,15 @@ class etudiant {
         $this->hydrate($donnes);
     }
 
-        function setAdmission($admission) {
+        function setAdmission(string $admission) {
 
-        if (is_string($admission) && strlen($admission) <= 10) {
+        if (strlen($admission) <= 10) {
             $this->admission = $admission;
         }
     }
 
-    function setFiliere($filiere) {
-        if (is_string($filiere) && strlen($filiere) <= 5) {
+    function setFiliere(string $filiere) {
+        if (strlen($filiere) <= 5) {
             $this->filiere = $filiere;
         }
     }
