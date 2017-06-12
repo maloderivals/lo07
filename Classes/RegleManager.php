@@ -10,7 +10,7 @@ class RegleManager {
   public function add(Regle $regle)
   {
     // Préparation de la requête d'insertion.
-      $q=$this->_db->prepare('INSERT INTO regle(id_regle, num_regle, action, type, temps_cursus, credits) VALUES(:id, :num_regle, :action, :type, :temps_cursus, :credits)');
+      $q=$this->_db->prepare('INSERT INTO regle(id_regle, num_regle, action, type, temps_cursus, credits, idReglement) VALUES(:id, :num_regle, :action, :type, :temps_cursus, :credits, :idReglement)');
     
     // Assignation des valeurs.
       $q->bindValue(':id',$regle->getId_regle());
@@ -19,6 +19,7 @@ class RegleManager {
       $q->bindValue(':type',$regle->getType());
       $q->bindValue(':temps_cursus',$regle->getTemps_cursus());
       $q->bindValue(':credits',$regle->getCredits());
+      $q->bindValue(':idReglement',$regle->getIdReglement());
       
     // Exécution de la requête.
       $q->execute();

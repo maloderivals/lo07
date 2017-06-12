@@ -66,7 +66,7 @@ class Regle {
             $this->temps_cursus = $temps_cursus;
      }
 
-    function setCredits(int $credits) {
+    function setCredits($credits) {
             $this->credits = $credits;
     }
 

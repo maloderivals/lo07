@@ -28,35 +28,38 @@ $nom = basename($_FILES['userfile']['name'], '.csv');
 echo "nom : $nom \n</br>";
 $reglement = new Reglement($nom, $nom); //Il faut décider comment on définit un id
 $manager_reglement = new ReglementManager($bdd);
-print_r("id reglement : ".$reglement->getId_Reglement()."\n</br>");
+print_r("id reglement : " . $reglement->getId_Reglement() . "\n</br>");
 //$manager_reglement->add($reglement);
 //Importation des regles
 $count = 1; // compter les règles
 while (!feof($fp)) {
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
+    $length = count($liste);
     $table = filter_input(INPUT_POST, 'userfile');
-    
+
     $regle_array = array("id_regle" => $reglement->getId_Reglement() . $liste[0]);
-    $regle_array["num_regle"] = $count;
+    $regle_array["num_regle"] = substr($liste[0], +1); //$count;
     $regle_array["action"] = $liste[1];
     $regle_array["type"] = $liste[2];
-    if ($liste[2] === "ALL") {
-        $regle_array["credit"] = $liste[3];
+    if ($length < 5) {
+        $regle_array["temps_cursus"] = "total";
+        $regle_array["credits"] = $liste[3];
     } else {
         $regle_array["temps_cursus"] = $liste[3];
-        $regle_array["credit"] =  $liste[4];
+        $regle_array["credits"] = $liste[4];
     }
     $regle_array["idReglement"] = $reglement->getId_Reglement();
 
     foreach ($regle_array as $key => $value) {
         echo"clé : $key, valeur : $value \n</br>";
     }
-    
+
     $regle = new Regle($regle_array);
     print_r("Règle $count : $regle ");
     $manager_regle = new RegleManager($bdd);
     $manager_regle->add($regle);
+    $count++;
 }
 
 //Fermeture du fichier
