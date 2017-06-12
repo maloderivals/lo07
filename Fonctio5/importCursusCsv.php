@@ -27,7 +27,6 @@ if ($fichier) { //ouverture du fichier temporaire
 <p align="center">- Fichier trouvé -</p>
 
 <?php
-
 //Importation de l'étu
 $etu = array();
 for ($i = 0; $i < 5; $i ++) {
@@ -47,7 +46,7 @@ $manager_etu->add($etudiant);
 
 //Création du cursus
 // label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
-$nom = basename($_FILES['userfile']['name'],'.csv');
+$nom = basename($_FILES['userfile']['name'], '.csv');
 $cursus_etu = new Cursus($nom, $etudiant->getId());
 $manager_cursus = new CursusManager($bdd);
 $manager_cursus->add($cursus_etu);
@@ -68,7 +67,6 @@ while ($liste[0] !== "END") {
         $elementFormation = new ElementFormation($elementForm);
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation, $cursus_etu);
-        
     }
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
@@ -81,3 +79,7 @@ fclose($fp);
 ?>
 
 <h2><p align="center">Fin de l'import du cursus !</p></h2>
+
+<form method="post" enctype="multipart/form-data" action="importcsv_form.html">
+    <input name="submit" type="submit" value="Importer d'autres fichiers"/>
+</form>

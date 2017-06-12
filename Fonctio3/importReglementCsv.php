@@ -63,4 +63,8 @@ $manager_reglement->add($reglement);
 fclose($fp);
 ?>
 
-<h2><p align="center">Fin de l'import du cursus !</p></h2>
+<h2><p align="center">Fin de l'import du règlement !</p></h2>
+
+<form method="post" enctype="multipart/form-data" action="../Fonctio5/importcsv_form.html">
+    <input name="submit" type="submit" value="Importer d'autres fichiers"/>
+</form>
