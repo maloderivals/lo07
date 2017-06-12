@@ -29,7 +29,9 @@ echo "nom : $nom \n</br>";
 $reglement = new Reglement($nom, $nom); //Il faut décider comment on définit un id
 $manager_reglement = new ReglementManager($bdd);
 print_r("id reglement : " . $reglement->getId_Reglement() . "\n</br>");
-//$manager_reglement->add($reglement);
+$manager_reglement->add($reglement);
+
+
 //Importation des regles
 $count = 1; // compter les règles
 while (!feof($fp)) {
