@@ -1,10 +1,9 @@
 <?php
 
-require_once 'Regle.php';
 
-class Reglement extends Regle{
+class Reglement{
 
-    private $regles = array();
+ // private $regles;
     private $nom_reglement;
     private $id_reglement;
 
@@ -16,10 +15,10 @@ class Reglement extends Regle{
         $this->nom_reglement = $nom_reglement;
     }
 
-    function getRegles() {
+    /*function getRegles() {
         return $this->regles;
     }
-
+*/
     function getId_reglement() {
         return $this->id_reglement;
     }
@@ -28,11 +27,11 @@ class Reglement extends Regle{
         $this->id_reglement = $id_reglement;
     }
 
-        function setRegles($regles) {
+      /*  function setRegles($regles) {
         if(is_array($regles)){
             $this->regles = $regles;
         }
-    }
+    }*/
 
     function __construct($nom, $id) {
         $this->nom_reglement = $nom;

@@ -22,11 +22,10 @@ private $_db; // Instance de PDO.
   public function add(Reglement $reglement)
   {
     // Préparation de la requête d'insertion.
-      $q=$this->_db->prepare('INSERT INTO reglement(id_reglement, nom_reglement) VALUES(:id, :nom_reglement)');
+      $q=$this->_db->prepare('INSERT INTO reglement(nom_reglement) VALUES(:nom_reglement)');
     
     // Assignation des valeurs.
-      $q->bindValue(':id',$reglement->getId());
-      $q->bindValue(':nom_reglement',$reglement->getNum_regle());
+      $q->bindValue(':nom_reglement',$reglement->getId_reglement());
       
     // Exécution de la requête.
       $q->execute();

@@ -2,6 +2,7 @@
 
 class Regle {
 
+    private $id_regle;
     private $num_regle;
     private $action; //SUM ou EXIST
     private $type; //CS, TM...
@@ -11,6 +12,14 @@ class Regle {
 
     function __construct(array $donnes) {
         $this->hydrate($donnes);
+    }
+
+    function getId_regle() {
+        return $this->id_regle;
+    }
+
+    function setId_regle($id_regle) {
+        $this->id_regle = $id_regle;
     }
 
     function getNum_regle() {
@@ -37,10 +46,8 @@ class Regle {
         return $this->idReglement;
     }
 
-    function setNum_regle($num_regle) {
-        if (is_int($num_regle)) {
-            $this->num_regle = $num_regle;
-        }
+    function setNum_regle(int $num_regle) {
+        $this->num_regle = $num_regle;
     }
 
     function setAction($action) {
@@ -55,16 +62,12 @@ class Regle {
         }
     }
 
-    function setTemps_cursus($temps_cursus) {
-        if (is_int($temps_cursus)) {
+    function setTemps_cursus($temps_cursus) {       
             $this->temps_cursus = $temps_cursus;
-        }
-    }
+     }
 
-    function setCredits($credits) {
-        if (is_int($credits)) {
+    function setCredits(int $credits) {
             $this->credits = $credits;
-        }
     }
 
     function setIdReglement($idReglement) {

@@ -22,35 +22,41 @@ if ($fichier) { //ouverture du fichier temporaire
 <p align="center">- Fichier trouvé -</p>
 
 <?php
-
 // label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$nom = basename($_FILES['userfile']['name'],'.csv');
+$nom = basename($_FILES['userfile']['name'], '.csv');
+echo "nom : $nom \n</br>";
 $reglement = new Reglement($nom, $nom); //Il faut décider comment on définit un id
 $manager_reglement = new ReglementManager($bdd);
-$manager_reglement->add($reglement);
-
+print_r("id reglement : ".$reglement->getId_Reglement()."\n</br>");
+//$manager_reglement->add($reglement);
 //Importation des regles
-
+$count = 1; // compter les règles
 while (!feof($fp)) {
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
     $table = filter_input(INPUT_POST, 'userfile');
     
-    $regle = array();
-    $regle["num_regle"] = liste[0];
-    $regle["action"] = liste[1];
-    $regle["type"] = liste[2];
-    $regle["temps_cursus"] = liste[3];
-    $regle["credit"] = liste[4];
-    $regle["idReglement"] = $reglement->getIdReglement();
-    
-    $elementFormation = new ElementFormation($elementForm);
-    $manager_elementFormation = new ElementFormationManager($bdd);
-    $manager_elementFormation->add($elementFormation);
-    $manager_elementFormation->addToCursus($cursus_etu);
+    $regle_array = array("id_regle" => $reglement->getId_Reglement() . $liste[0]);
+    $regle_array["num_regle"] = $count;
+    $regle_array["action"] = $liste[1];
+    $regle_array["type"] = $liste[2];
+    if ($liste[2] === "ALL") {
+        $regle_array["credit"] = $liste[3];
+    } else {
+        $regle_array["temps_cursus"] = $liste[3];
+        $regle_array["credit"] =  $liste[4];
+    }
+    $regle_array["idReglement"] = $reglement->getId_Reglement();
 
+    foreach ($regle_array as $key => $value) {
+        echo"clé : $key, valeur : $value \n</br>";
+    }
     
+    $regle = new Regle($regle_array);
+    print_r("Règle $count : $regle ");
+    $manager_regle = new RegleManager($bdd);
+    $manager_regle->add($regle);
 }
 
 //Fermeture du fichier
