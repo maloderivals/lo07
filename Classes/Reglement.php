@@ -12,7 +12,7 @@ class Reglement extends Regle{
         return $this->nom_reglement;
     }
 
-    function setNom_reglement($nom_reglement) {
+    function setNom_reglement(string $nom_reglement) {
         $this->nom_reglement = $nom_reglement;
     }
 
@@ -34,21 +34,11 @@ class Reglement extends Regle{
         }
     }
 
-    function __construct(array $donnes) {
-        $this->hydrate($donnes);
+    function __construct($nom, $id) {
+        $this->nom_reglement = $nom;
+        $this->id_reglement = $id;
     }
     
-    public function hydrate(array $donnees) {
-        foreach ($donnees as $key => $value) {
-            // On récupère le nom du setter correspondant à l'attribut.
-            $method = 'set' . ucfirst($key);
-
-            // Si le setter correspondant existe.
-            if (method_exists($this, $method)) {
-                // On appelle le setter.
-                $this->$method($value);
-            }
-        }
-    }
+   
 
 }

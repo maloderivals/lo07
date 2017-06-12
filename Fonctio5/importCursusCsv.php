@@ -67,8 +67,7 @@ while ($liste[0] !== "END") {
         }
         $elementFormation = new ElementFormation($elementForm);
         $manager_elementFormation = new ElementFormationManager($bdd);
-        $manager_elementFormation->add($elementFormation);
-        $manager_elementFormation->addToCursus($cursus_etu);
+        $manager_elementFormation->add($elementFormation, $cursus_etu);
         
     }
     $ligne = fgets($fp, 4096);

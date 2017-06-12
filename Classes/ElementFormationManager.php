@@ -9,11 +9,11 @@ class ElementFormationManager {
     $this->setDb($db);
   }
 
-  public function add(ElementFormation $elem){
+  public function add(ElementFormation $elem, Cursus $cursus){
     // Préparation de la requête d'insertion.
     // Assignation des valeurs 
     // Exécution de la requête.
-      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)");
+      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat, cursus) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat, :cursus)");
       $q->bindValue(':id',$elem->getId());
       $q->bindValue(':sem_seq',$elem->getSem_seq());
       $q->bindValue(':sem_label',$elem->getSem_label());
@@ -24,14 +24,16 @@ class ElementFormationManager {
       $q->bindValue(':profil',$elem->getProfil());
       $q->bindValue(':credit',$elem->getCredit());
       $q->bindValue(':resultat',$elem->getResultat());
+      $q->bindValue(':cursus',$cursus->getLabel());
       
       $q->execute();
       
   }
   
-  public function addToCursus(Cursus $cursus) {
-      $q = $this->_db->prepare("INSERT INTO element_formation(cursus) VALUES (:cursus)");
+  public function addToCursus(ElementFormation $element, Cursus $cursus) {
+      $q = $this->_db->prepare("UPDATE element_formation SET cursus = :cursus WHERE id = :id");
       $q->bindValue(':cursus', $cursus->getLabel());
+      $q->bindValue(':id', $element->getId());
   }
 
   public function delete(ElementFormation $elem){
