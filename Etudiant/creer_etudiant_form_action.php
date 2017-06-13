@@ -13,13 +13,13 @@ include '../Classes/Etudiant.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form name="etudiant" action="creer_etudiant_form_stock.php" method="POST">
+        <form name="etudiant" action="../index.php" method="POST">
         <fieldset>
             <legend align="center"> Rentrez vos informations </legend> 
             
             <?php
             echo"<div>";
-            input('id1', 'text', 'id1', 'Rentrez votre numéro étudiant');
+            input('id', 'text', 'id', 'Rentrez votre numéro étudiant');
             echo"</div>";
             echo"<div>";
             input('nom', 'text', 'nom', "Nom  ");
@@ -41,7 +41,7 @@ include '../Classes/Etudiant.php';
             ?>
             
             <div>                               
-            <input type="submit" value="Envoyer" name='submit'/> 
+            <input type="submit" value="inscription" name='choix'/> 
            
             
             

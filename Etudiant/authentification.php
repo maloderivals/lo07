@@ -14,7 +14,7 @@
                 <fieldset >
                     <legend align='center'>Rentrez votre numéro étudiant</legend>
                     <input type="text" name="id" value="" />
-                    <input type="submit" value="Submit" name="Submit" />
+                    <input type="submit" value="authentification" name="choix" />
                 </fieldset>
             </form></div>
     </body>

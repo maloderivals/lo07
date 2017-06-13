@@ -44,7 +44,21 @@ class ElementFormationManager {
     // Exécute une requête de type DELETE.
       $this->_db->exec('DELETE FROM element_formation WHERE id='.$elem->getId());
   }
+  
+  public function getAllCursus()
+  {
+    $cursus = [];
 
+    $q = $this->_db->query('SELECT `cursus` FROM element_formation WHERE 1');
+
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $cursus[] = new Cursus($donnees);
+    }
+
+    return $cursus;
+  
+  }    
   public function get($id){
     // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet ElementFormation.
       $q=$this->_db->query('SELECT * FROM element_formation WHERE id='.$id);
