@@ -29,16 +29,54 @@ and open the template in the editor.
 
         <div>
             <h2>Sélectionne un cursus à vérifier</h2>
+            try
+            {
+            $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            }
+            catch(Exception $e)
+            {
+            die('Erreur : '.$e->getMessage());
+            }
+            ?>
+            <form method="post" action="../Fonctio3/verificationCursus.php">
+                <p>
+                    <label>Cursus</label><br />
+                    <select name="cursus" id="cursus">
 
-            <form method="post" enctype="multipart/form-data" action="../Fonctio3/verificationCursus.php">
-                <p> <label>Nom du cursus</label>
-                    <input type="text" name='nom' size='25' value='nomCursus'/>                     
+                        <?php
+
+                        $q = $this->bdd->query("SELECT label FROM cursus");
+
+                        while ($donnees = $q->fetch()){
+                        ?>
+                        <option value="<?php echo $donnees['cursus']; ?>"> <?php echo $donnees['label']; ?></option>
+                        <?php
+                        }
+
+                        ?>
+                    </select>
                 </p>
+
+
                 <p> <label>Nom du règlement</label>
-                    <input type="text" name='nom' size='25' value='nomReglement'/> 
+                    <select name="reglement" id="reglement">
+
+                        <?php
+
+                        $q = $this->bdd->query("SELECT nom_reglement FROM reglement");
+
+                        while ($donnees = $q->fetch()){
+                        ?>
+                        <option value="<?php echo $donnees['reglement']; ?>"> <?php echo $donnees['nom_reglement']; ?></option>
+                        <?php
+                        }
+
+                        ?>
+                    </select>
+                </p>
+                <p>
                     <input name="submit" type="submit" value="Vérifier"/>
                 </p>
-                <p><input name="submit" type="submit" value="Vérifier"/></p>
             </form>
         </div>
     </body>

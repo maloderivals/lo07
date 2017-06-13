@@ -1,5 +1,5 @@
 <?php
-
+include 'Regle.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +12,7 @@
  * @author antoinegruchet
  */
 class ReglementManager {
+    
 
     private $_db; // Instance de PDO.
 
@@ -48,7 +49,7 @@ class ReglementManager {
         // Retourne la liste de toutes les règles.
         $regles = [];
 
-        $q = $this->_db->query('SELECT * FROM regle ORDER BY num_regle WHERE idReglement=' . $reglement->getId_reglement());
+        $q = $this->_db->query('SELECT * FROM regle');// WHERE idReglement=' . $reglement->getId_reglement() . ' ORDER BY num_regle' );
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $regles[] = new Regle($donnees);
@@ -59,8 +60,10 @@ class ReglementManager {
 
     public function update(Reglement $reglement) {
         // Prépare une requête de type UPDATE.
-       // $q = $this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom=:prenom, admission = :admission, filiere = :filiere WHERE id = :id');
-        //$q->bindValue(':id', $etu->getId(), PDO::PARAM_INT);
+       // $q = $this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom = :prenom, admission = :admission, filiere = :filiere WHERE id = :id');
+        //$q->bindValue(':id
+
+        
  
         // Exécution de la requête.
     }

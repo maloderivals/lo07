@@ -49,18 +49,20 @@ private $_db; // Instance de PDO.
       return new etudiant($donnee);
   }
 
-  public function getList()
+  public function getList(Cursus $cursus)
   {
-    $cursus = [];
+    $elementsCursus = [];
 
-    $q = $this->_db->query('SELECT e.* FROM cursus c, element_formation e WHERE e.cursus = c.label ORDER BY sem_seq');
+    $q = $this->_db->query('SELECT * FROM element_formation WHERE cursus = :label');// ORDER BY sem_seq');
+    
+    $q->bindValue(':label',$cursus->getLabel());
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
-      $cursus[] = new Cursus($donnees);
+      $elementsCursus[] = new ElementFormation($donnees);
     }
 
-    return $cursus;    
+    return $elementsCursus;    
   }
 
   
