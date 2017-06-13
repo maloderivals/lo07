@@ -12,20 +12,35 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-        <h2>Choisis ton cursus p'tit gars</h2>
-        <form method="post" enctype="multipart/form-data" action="importCursusCsv.php">
-            <input name ="userfile" type="file" value="table" />
-            <input name="submit" type="submit" value="Importer"/><br>
-        </form>
+            <h2>Choisis ton cursus p'tit gars</h2>
+            <form method="post" enctype="multipart/form-data" action="importCursusCsv.php">
+                <input name ="userfile" type="file" value="table" />
+                <input name="submit" type="submit" value="Importer"/><br>
+            </form>
         </div>
-        
+
         <div>
-        <h2>Choisis ton règlement poto</h2>
-        <form method="post" enctype="multipart/form-data" action="../Fonctio3/importReglementCsv.php">
-            <input name ="userfile" type="file" value="table" />
-            <input name="submit" type="submit" value="Importer"/>
-        </form>
+            <h2>Choisis ton règlement poto</h2>
+            <form method="post" enctype="multipart/form-data" action="../Fonctio3/importReglementCsv.php">
+                <input name ="userfile" type="file" value="table" />
+                <input name="submit" type="submit" value="Importer"/>
+            </form>
+        </div>
+
+        <div>
+            <h2>Sélectionne un cursus à vérifier</h2>
+
+            <form method="post" enctype="multipart/form-data" action="../Fonctio3/verificationCursus.php">
+                <p> <label>Nom du cursus</label>
+                    <input type="text" name='nom' size='25' value='nomCursus'/>                     
+                </p>
+                <p> <label>Nom du règlement</label>
+                    <input type="text" name='nom' size='25' value='nomReglement'/> 
+                    <input name="submit" type="submit" value="Vérifier"/>
+                </p>
+                <p><input name="submit" type="submit" value="Vérifier"/></p>
+            </form>
         </div>
     </body>
-    
+
 </html>

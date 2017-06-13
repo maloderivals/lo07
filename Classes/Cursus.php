@@ -23,7 +23,7 @@ class Cursus extends etudiant {
         }
     }
 
-    function setEtudiant($etudiant) {
+    function setEtudiant(int $etudiant) {
         $this->etudiant = $etudiant;
     }
 
@@ -32,21 +32,26 @@ class Cursus extends etudiant {
         $this->etudiant = $etudiant;
     }
 
-    public function cursus_conforme($reglement) {
+    public function cursus_conforme(array $regles, array $ElementFormation) {
         $valide = true;
-        foreach ($reglement->regles as $line => $conditions) {
+        $i = 0;
+        while ($valide) {
+            $regle = new Regle($regles[i]);
+            
 
-            // je ne connais pas encore l'organisation
-            //if SUM => voir quel type d'UE ça concerne puis branche ou filière
-            //check si SUM est bon 
-            //Sinon dire ce qu'il manque (printout)
-            //
+                // je ne connais pas encore l'organisation
+                //if SUM => voir quel type d'UE ça concerne puis branche ou filière
+                //check si SUM est bon 
+                //Sinon dire ce qu'il manque (printout)
+                //
             //if EXIST
-            //Check si ça existe notifier ce qui n'existe pas (printout)
+                //Check si ça existe notifier ce qui n'existe pas (printout)
+            
+            $i++;
         }
         return $valide;
     }
-    
+
 }
 
 ?>

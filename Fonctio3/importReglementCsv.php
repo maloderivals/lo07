@@ -27,6 +27,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '
 $nom = basename($_FILES['userfile']['name'], '.csv');
 $reglement = new Reglement($nom, $nom); //Il faut décider comment on définit un id
 $manager_reglement = new ReglementManager($bdd);
+$manager_reglement->add($reglement);
 
 
 
@@ -58,7 +59,7 @@ while (!feof($fp)) {
     //$count++;
 }
 
-$manager_reglement->add($reglement);
+
 //Fermeture du fichier
 fclose($fp);
 ?>
