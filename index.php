@@ -1,5 +1,7 @@
 <?php 
-session_start(); // sur toutes nos pages 
+session_start(); 
+$_SESSION['id']=$_POST['id'];
+ 
 echo "<h1 align='center'>INDEX</h1>";
 echo "Sacré projet mamene";
 ?>

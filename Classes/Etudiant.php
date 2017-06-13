@@ -30,10 +30,8 @@ class etudiant {
         return $this->filiere;
     }
 
-    function setId(int $id) {
-        if ($id >= 0) {
+    function setId($id) {        
             $this->id = $id;
-        }
     }
 
     //Modifier les setter et mettre des conditions pour éviter la casse

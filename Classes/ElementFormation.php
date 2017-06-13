@@ -1,14 +1,4 @@
 <?php
-
-
-
-
-
-
-
-
-
-
 class ElementFormation {
 
     private $id;
@@ -21,6 +11,7 @@ class ElementFormation {
     private $profil;
     private $credit;
     private $resultat;
+    private $cursus;
 
 
     function __construct($donnes) {
@@ -81,8 +72,11 @@ class ElementFormation {
     function getResultat() {
         return $this->resultat;
     }
+    function getCursus() {
+        return $this->cursus;
+    }
 
-    function setId(string $id) {
+        function setId(string $id) {
         $this->id = $id;
     }
 
@@ -125,7 +119,11 @@ class ElementFormation {
     function setResultat(string $resultat) {
         $this->resultat = $resultat;
     }
+    function setCursus($cursus) {
+        $this->cursus = $cursus;
+    }
 
+    
     public function hydrate(array $donnees) {
         foreach ($donnees as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.

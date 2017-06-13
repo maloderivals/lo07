@@ -17,9 +17,9 @@ class ElementFormationManager {
 
 
 
-      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat)");
+      $q=$this->_db->prepare("INSERT INTO element_formation(id, sem_seq, sem_label, sigle, categorie, affectation, utt, profil, credit, resultat, cursus) VALUES(:id, :sem_seq, :sem_label, :sigle, :categorie, :affectation, :utt, :profil, :credit, :resultat, :cursus)");
+      
       $q->bindValue(':id',$elem->getId());
-
       $q->bindValue(':sem_seq',$elem->getSem_seq());
       $q->bindValue(':sem_label',$elem->getSem_label());
       $q->bindValue(':sigle',$elem->getSigle());
@@ -29,6 +29,7 @@ class ElementFormationManager {
       $q->bindValue(':profil',$elem->getProfil());
       $q->bindValue(':credit',$elem->getCredit());
       $q->bindValue(':resultat',$elem->getResultat());
+      $q->bindValue(':cursus',$elem->getCursus());
       
       $q->execute();
       
