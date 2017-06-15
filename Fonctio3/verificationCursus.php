@@ -33,7 +33,7 @@ $managerReglement = new ReglementManager($bdd);
 $cursus = new Cursus($nomCursus, $etu);
 $managerCursus = new CursusManager($bdd);S
 
-$regles = $managerReglement->getList($reglement);
+//$regles = $managerReglement->getList($reglement);
 $elementFormation = $managerCursus->getList($cursus);
 
 foreach ($regles as $key => $value) {
