@@ -9,7 +9,7 @@ include 'Classes/Etudiant.php';
 $_SESSION['NbreEF']=0;
 
 
-$db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager = new EtudiantManager($db);
 echo "<h1>POST</h1>";
 echo"<pre>";
