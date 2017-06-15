@@ -1,8 +1,7 @@
 <?php
-
-
 class ElementFormation {
 
+    private $id;
     private $sem_seq;
     private $sem_label;
     private $sigle;
@@ -12,27 +11,30 @@ class ElementFormation {
     private $profil;
     private $credit;
     private $resultat;
+    private $cursus;
 
-    /*function __construct($sem_seq, $sem_label, $sigle, $categorie, $affectation, $utt, $profil, $credit, $resultat) {
-        $this->sem_seq = $sem_seq;
-        $this->sem_label = $sem_label;
-        $this->sigle = $sigle;
-        $this->categorie = $categorie;
-        $this->affectation = $affectation;
-        $this->utt = $utt;
-        $this->profil = $profil;
-        $this->credit = $credit;
-        $this->resultat = $resultat;
-    }*/
 
-    public function __destruct() {      
-        echo ">> class module : destruct ($this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n" ;             
+    function __construct($donnes) {
+
+          $this->hydrate($donnes);
+
+
+
+
     }
 
+    /*public function __destruct() {
+        echo ">> class module : destruct ($this->id, $this->sem_seq,$this->sem_label,$this->sigle,$this->categorie, $this->affectation,$this->utt,$this->profil,$this->credit, $this->resultat) <br/>\n";
+    }*/
+
     public function __toString() {
-        return "Elément de formation : $this->sem_seq, $this->sem_label, "
+        return "Elément de formation : $this->id, $this->sem_seq, $this->sem_label, "
                 . "$this->sigle, $this->categorie, $this->affectation, $this->utt,"
                 . " $this->profil, $this->credit, $this->resultat.";
+    }
+
+    function getId() {
+        return $this->id;
     }
 
     function getSem_seq() {
@@ -70,41 +72,69 @@ class ElementFormation {
     function getResultat() {
         return $this->resultat;
     }
+    function getCursus() {
+        return $this->cursus;
+    }
 
-    function setSem_seq($sem_seq) {
+        function setId(string $id) {
+        $this->id = $id;
+    }
+
+    function setSem_seq(int $sem_seq) {
         $this->sem_seq = $sem_seq;
     }
 
-    function setSem_label($sem_label) {
+    function setSem_label(string $sem_label) {
         $this->sem_label = $sem_label;
     }
 
-    function setSigle($sigle) {
+    function setSigle(string $sigle) {
         $this->sigle = $sigle;
     }
 
-    function setCategorie($categorie) {
+    function setCategorie(string $categorie) {
         $this->categorie = $categorie;
     }
 
-    function setAffectation($affectation) {
+    function setAffectation(string $affectation) {
         $this->affectation = $affectation;
     }
 
     function setUtt($utt) {
-        $this->utt = $utt;
+        if ($utt === "Y" || $utt === "N") {
+            $this->utt = $utt;
+        }
     }
 
     function setProfil($profil) {
-        $this->profil = $profil;
+        if ($profil === "Y" || $profil === "N") {
+            $this->profil = $profil;
+        }
     }
 
-    function setCredit($credit) {
+    function setCredit(int $credit) {
         $this->credit = $credit;
     }
 
-    function setResultat($resultat) {
+    function setResultat(string $resultat) {
         $this->resultat = $resultat;
+    }
+    function setCursus($cursus) {
+        $this->cursus = $cursus;
+    }
+
+    
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
+        }
     }
 
 }

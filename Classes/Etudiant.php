@@ -1,14 +1,14 @@
 <?php
 
+//session_start(); // sur toutes nos pages 
+
 class etudiant {
 
-private $id;
-private $nom;
-private $prenom;
-private $admission;
-private $Filière;
-
-
+    private $id; //numéro étudiant
+    private $nom; // chaine de char
+    private $prenom; //chaine de car
+    private $admission; // chaine de  car
+    private $filiere; //chaine de car
 
     function getId() {
         return $this->id;
@@ -22,30 +22,89 @@ private $Filière;
         return $this->prenom;
     }
 
-    function setId($id) {
-        $this->id = $id;
+    function getAdmission() {
+        return $this->admission;
     }
 
+    function getFiliere() {
+        return $this->filiere;
+    }
+
+    function setId($id) {        
+            $this->id = $id;
+    }
+
+    //Modifier les setter et mettre des conditions pour éviter la casse
+
     function setNom($nom) {
-        $this->nom = $nom;
+        if (is_string($nom) && strlen($nom) <= 30) {
+            $this->nom = $nom;
+        }
     }
 
     function setPrenom($prenom) {
-        $this->prenom = $prenom;
+        if (is_string($prenom) && strlen($prenom) <= 30) {
+            $this->prenom = $prenom;
+        }
     }
-    function __construct($id, $nom, $prenom) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+
+    function setLabel_etu($label_etu) {
+        if(is_string($prenom) & strlen($nom) <= 30 ){
+            $this->prenom = $prenom;
+        }
     }
+
+
+
+
+    function __construct(array $donnes) {
+        $this->hydrate($donnes);
+
+    }
+
+        function setAdmission($admission) {
+
+        if (is_string($admission) && strlen($admission) <= 10) {
+            $this->admission = $admission;
+        }
+    }
+
+    function setFiliere($filiere) {
+        if (is_string($filiere) && strlen($filiere) <= 5) {
+            $this->filiere = $filiere;
+        }
+    }
+
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
+        }
+
+     
+      }
+    
+
+        
+
     
 
 
+
+
+   
+
+    public function _AfficherEtu() {
+        
+    }
+
 }
 
-
-
-
-
-
 ?>
+
