@@ -70,7 +70,7 @@ class EtudiantManager {
       
   }
   function Array_out(etudiant $etu){
-      $donnes=array('id'=>$etu->getId(),'nom'=>$etu->getNom(),'prenom'=>$etu->getPrenom(),'admission'=>$etu->getAdmission() ,'filiere'=>$etu->getFiliere());
+      $donnes= ['id'=>$etu->getId(),'nom'=>$etu->getNom(),'prenom'=>$etu->getPrenom(),'admission'=>$etu->getAdmission() ,'filiere'=>$etu->getFiliere()];
       return $donnes;
       
   }
