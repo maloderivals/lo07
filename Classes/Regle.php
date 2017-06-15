@@ -62,20 +62,20 @@ class Regle {
         }
     }
 
-    function setTemps_cursus($temps_cursus) {       
-            $this->temps_cursus = $temps_cursus;
-     }
+    function setTemps_cursus($temps_cursus) {
+        $this->temps_cursus = $temps_cursus;
+    }
 
     function setCredits($credits) {
-            $this->credits = $credits;
+        $this->credits = $credits;
     }
 
     function setIdReglement($idReglement) {
         $this->idReglement = $idReglement;
     }
 
-    public function __toString() {
-        return "$this->num_regle, $this->action, $this->type, $this->temps_cursus, $this->credits.";
+    function __toString() {
+        return "$this->id_regle, $this->num_regle, $this->action, $this->type, $this->temps_cursus, $this->credits, $this->idReglement";
     }
 
     public function hydrate(array $donnees) {

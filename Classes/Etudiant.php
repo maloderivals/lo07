@@ -30,10 +30,8 @@ class etudiant {
         return $this->filiere;
     }
 
-    function setId(int $id) {
-        if ($id >= 0) {
+    function setId($id) {        
             $this->id = $id;
-        }
     }
 
     //Modifier les setter et mettre des conditions pour éviter la casse
@@ -50,8 +48,18 @@ class etudiant {
         }
     }
 
+    function setLabel_etu($label_etu) {
+        if(is_string($prenom) & strlen($nom) <= 30 ){
+            $this->prenom = $prenom;
+        }
+    }
+
+
+
+
     function __construct(array $donnes) {
         $this->hydrate($donnes);
+
     }
 
         function setAdmission(string $admission) {
@@ -78,7 +86,19 @@ class etudiant {
                 $this->$method($value);
             }
         }
-    }
+
+     
+      }
+    
+
+        
+
+    
+
+
+
+
+   
 
     public function _AfficherEtu() {
         
@@ -87,3 +107,4 @@ class etudiant {
 }
 
 ?>
+

@@ -31,7 +31,21 @@ class Cursus {
         $this->label = $label;
         $this->etudiant = $etudiant;
     }
-/*
+
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
+        }
+    }
+
+    /*
     function cursus_conforme(array $regles, array $elementsFormation) {
         $valide = TRUE;
         $length = count($elementsFormation);
@@ -39,7 +53,6 @@ class Cursus {
         foreach ($regles as $value) {
             $regle = new Regle($value);
             $y = 0;
-
             if ($regle->getAction() = "SUM") {
                 if ($regle->getType() = "UTT(CS+TM)") {
                     $cstm = 0;

@@ -69,7 +69,11 @@ class EtudiantManager {
       $q->bindValue(':filiere',$etu->getFiliere(),PDO::PARAM_INT);
       
   }
-
+  function Array_out(etudiant $etu){
+      $donnes=array('id'=>$etu->getId(),'nom'=>$etu->getNom(),'prenom'=>$etu->getPrenom(),'admission'=>$etu->getAdmission() ,'filiere'=>$etu->getFiliere());
+      return $donnes;
+      
+  }
   public function setDb(PDO $db)
   {
     $this->_db = $db;
