@@ -75,8 +75,8 @@ class etudiant {
         }
     }
 
-    public function hydrate(array $donnees) {
-        foreach ($donnees as $key => $value) {
+    public function hydrate(array $donnes) {
+        foreach ($donnes as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
 

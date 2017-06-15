@@ -5,11 +5,30 @@ session_start(); // sur toutes nos pages
 include '../include/Formulaire_Dynamique_fonction.php';
 include '../Classes/ElementFormationManager.php';
 include '../Classes/ElementFormation.php';
-
-
-// Sous MAMP (Mac) $elem= new ElementFormation();
+include '../Classes/Cursus.php';
+include '../Classes/CursusManager.php';
 $db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$manager = new ElementFormationManager($db);
+
+
+echo "<h1>POST</h1>";
+echo '<pre>';
+print_r($_POST);
+echo "<h1>Session</h1>";
+print_r($_SESSION);
+echo '</pre>';
+
+if (!isset($_POST['choix'])){
+    $_SESSION['label']=$_POST['label'];
+//Création DE l'array cursus à rentrer dans la bdd et persistance
+    $cursus_manager= new CursusManager($db);
+    $donnes =array('label'=>$_SESSION['label'],'etudiant'=>$_SESSION['id']);
+    
+//Ajout du cursus dans la bdd avant l'element de formation (car FK)
+    $cursus=new Cursus($donnes);
+    $cursus_manager->add($cursus);
+    echo "<h1 align='center'>-Cursus importé-</h1>";
+}
+// Sous MAMP (Mac) $elem= new ElementFormation();
 
 ?>
  <html>
@@ -40,6 +59,12 @@ $manager = new ElementFormationManager($db);
             input('affectation', 'text', 'affectation', "Affectation (TC...)");
             echo "<div>";
             ?>
+            <div>
+            <label for="affectation"> Affectation : </label>
+            TC <input type="radio" name="affectation" value="TC"/>
+            TCBR <input type="radio" name="affectation" value="TCBR"/>
+            BR <input type="radio" name="affectation" value="BR"/>
+            </div>
             <div>
             <label for="utt"> Suivis à l'UTT ? </label>
             oui <input type="radio" name="utt" value="Y"/>

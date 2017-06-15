@@ -1,8 +1,10 @@
 <?php
-
+session_start();
 include '../include/Formulaire_Dynamique_fonction.php';
 include '../Classes/EtudiantManager.php';
 include '../Classes/Etudiant.php';
+
+
 
 ?>
 <html>
