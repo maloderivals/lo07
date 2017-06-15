@@ -46,11 +46,11 @@ class ElementFormationManager {
   {
     $cursus = [];
 
-    $q = $this->_db->query('SELECT `cursus` FROM element_formation WHERE 1');
+    $q = $this->_db->query("SELECT * FROM element_formation e, cursus c WHERE e.cursus = c.label");
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
-      $cursus[] = new Cursus($donnees);
+      $cursus[] = $donnees; //new Cursus($donnees);
     }
 
     return $cursus;

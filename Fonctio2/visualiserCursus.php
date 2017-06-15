@@ -14,12 +14,13 @@ $curs = explode(" - ", $recup);
 $cursus = new Cursus($curs[0], $curs[1]);
 $cursus_manager = new CursusManager($bdd);
 $etu_manager = new EtudiantManager($bdd);
-$etu = $etu_manager->Array_out($etu_manager->get($cursus->getEtudiant()));
-$etudiant = new etudiant($etu);
+$etudiant = $etu_manager->get($cursus->getEtudiant());
+$manager_elem = new ElementFormationManager($bdd);
+
 
 //Récupération des éléments du cursus
-
 $listElements = $cursus_manager->getList($cursus);
 
-var_dump($cursus);
-var_dump($listElements);
+foreach ($listElements as $key => $elementForm) {
+    
+}
