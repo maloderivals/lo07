@@ -21,12 +21,11 @@ foreach ($reglementsList as $key => $reg) {
     $reglem[] = $reg->getId_reglement();
 }
 $reglements = [];
-$tmp;
 foreach ($reglem as $key => $value) {
     $reglements[] = $value['nom_reglement'];
-    $tmp = $value['nom_reglement'];
 }
-var_dump($tmp);
+
+
 function getCursus($db, $etu) {
     $sql = 'SELECT distinct label FROM cursus where etudiant = ' . $etu["id"];
 
@@ -46,16 +45,14 @@ foreach ($etudiants as $etud) {
     $cursus[] = getCursus($bdd, $etud);
 }
 
-foreach ($reglements as $key => $reg) {
-    echo($reg);
-}
+
 ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Vérifier un cursus</title>
-        <link href="../include/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" >
     </head>
     <body>
         <form method="post" action="verificationCursus.php">
@@ -75,10 +72,10 @@ foreach ($reglements as $key => $reg) {
                         <input list="reglements" name="listReglements" id="listReglements">
                         <datalist id="reglement">
                             <?php
-                            //foreach ($reglements as $reg) {
+                            foreach ($reglements as $reg) {
                                 ?>
-                                <option value="<?php$tmp; ?>">
-                                <?php //} ?>
+                                <option value="<?php $reg; ?>">
+                                <?php } ?>
                         </datalist>
                         </br>
                     </p>
