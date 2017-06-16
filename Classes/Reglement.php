@@ -4,9 +4,9 @@
 class Reglement{
 
  // private $regles;
-    private $nom_reglement;
+   // private $nom_reglement;
     private $id_reglement;
-
+/*
     function getNom_reglement() {
         return $this->nom_reglement;
     }
@@ -33,11 +33,14 @@ class Reglement{
         }
     }*/
 
-    function __construct($nom, $id) {
-        $this->nom_reglement = $nom;
+    function __construct($id) {
+        //$this->nom_reglement = $nom;
         $this->id_reglement = $id;
     }
     
-   
+    public function __toString() {
+        return $this->id_reglement;
+    }
+
 
 }

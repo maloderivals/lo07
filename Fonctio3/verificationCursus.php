@@ -11,30 +11,27 @@ include '../Classes/Cursus.php';
 include '../Classes/CursusManager.php';
 include '../Classes/ReglementManager.php';
 
-$bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-$i = 0;
-foreach ($_GET as $cle => $valeur) {
-    echo ("<li>$i) $cle = $valeur </li>");
-    $i += 1;
-}
+//Récupération des infos du règlement choisi
+$recupReg = $_POST['listReglements'];
+$reglement = new Reglement($recupReg);
+$reglement_manager = new ReglementManager($bdd);
 
-// Mettre un formulaire pour récupérer ces données
-$nomCursus = "cursusPrior";
-$nomReglement = "R_Actuel_Br";
-$etu = 12456;
-$manager_etu = new EtudiantManager($bdd);
-$etudiant = $manager_etu->get($etu);
-print_r($etudiant);
+//Récupération des infos du cursus choisi
+$recup = $_POST['listCursus'];
+$curs = explode(" - ", $recup);
 
-$reglement = new Reglement($nomReglement, $nomReglement);
-$managerReglement = new ReglementManager($bdd);
+$cursus = new Cursus($curs[0], $curs[1]);
+$cursus_manager = new CursusManager($bdd);
+$etu_manager = new EtudiantManager($bdd);
+$etudiant = $etu_manager->get($cursus->getEtudiant());
+$manager_elem = new ElementFormationManager($bdd);
 
-$cursus = new Cursus($nomCursus, $etu);
-$managerCursus = new CursusManager($bdd);S
 
-//$regles = $managerReglement->getList($reglement);
-$elementFormation = $managerCursus->getList($cursus);
+//Récupération des éléments du cursus
+$listElements = $cursus_manager->getList($cursus);
+
 
 foreach ($regles as $key => $value) {
     print_r("<li>) $cle = $valeur </li>");

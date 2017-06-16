@@ -45,11 +45,11 @@ class ReglementManager {
         return new Reglement($donnees);
     }
 
-    public function getList(Reglement $reglement) {
+    public function getRegles(Reglement $reglement) {
         // Retourne la liste de toutes les règles.
         $regles = [];
 
-        $q = $this->_db->query('SELECT * FROM regle');// WHERE idReglement=' . $reglement->getId_reglement() . ' ORDER BY num_regle' );
+        $q = $this->_db->query("SELECT * FROM regle WHERE idReglement='" . $reglement->getId_reglement() . "' ORDER BY idReglement & num_regle" );
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $regles[] = new Regle($donnees);
@@ -58,6 +58,20 @@ class ReglementManager {
         return $regles;
     }
 
+    public function getList() {
+        // Retourne la liste de toutes les règles.
+        $reglements = [];
+
+        $q = $this->_db->query("SELECT * FROM reglement" );
+
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $reglements[] = new Reglement($donnees);
+        }
+
+        return $reglements;
+    }
+    
+    
     public function update(Reglement $reglement) {
         // Prépare une requête de type UPDATE.
        // $q = $this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom = :prenom, admission = :admission, filiere = :filiere WHERE id = :id');
@@ -68,6 +82,12 @@ class ReglementManager {
         // Exécution de la requête.
     }
 
+    function Array_out(Reglement $reg){
+      $donnees= ['nom_reglement'=>$reg->getId_reglement()];
+      
+      return $donnees;
+              
+    }
     public function setDb(PDO $db) {
         $this->_db = $db;
     }
