@@ -45,7 +45,7 @@ class Cursus {
         }
     }
 
-    /*
+    
     function cursus_conforme(array $regles, array $elementsFormation) {
         $valide = TRUE;
         $length = count($elementsFormation);
@@ -148,9 +148,8 @@ class Cursus {
                 }
             }
         }
-        return $valide;
+        return $failedConditions;
     }
-*/
 }
 
 ?>
