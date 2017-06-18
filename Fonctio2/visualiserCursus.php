@@ -1,6 +1,6 @@
 <head>
     <title>Votre cursus</title>
-    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
 </head>
 <body>
     <?php

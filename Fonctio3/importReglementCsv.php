@@ -1,4 +1,7 @@
-<head>Import du règlement</head>
+<head>
+    Import du règlement
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
+</head>
 
 <?php
 include '../Classes/Reglement.php';

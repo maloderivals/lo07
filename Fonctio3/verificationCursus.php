@@ -1,5 +1,6 @@
 <head>
     <title>Vérification du Cursus</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
 </head>
 
 <?php
