@@ -49,7 +49,7 @@ while (!feof($fp)) {
     $regle_array["num_regle"] = $num; //$count;
     $regle_array["action"] = $liste[1];
     $regle_array["type"] = $liste[2];
-    if ($length < 5) {
+    if ($liste[2] === "ALL") {
         $regle_array["temps_cursus"] = "total";
         $regle_array["credits"] = $liste[3];
     } else {

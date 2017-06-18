@@ -16,7 +16,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '
 
 //Récupération des infos du règlement choisi
 //$recupReg = $_POST['listReglements'];
-$reglement = new Reglement("R_Actuel_Br");
+$reglement = new Reglement("R_FUTUR_BR");
 $reglement_manager = new ReglementManager($bdd);
 
 //Récupération des infos du cursus choisi
@@ -37,10 +37,32 @@ $listRegles = $reglement_manager->getRegles($reglement);
 
 $res = $cursus->cursus_conforme($listRegles, $listElements);
 
-if ( count($res) === 0) {
-    print_r("Ce cursus est conforme, ton diplôme t'attends à la scolarité. Bravo !");
+/*if (count($res) === 0) {
+    print_r("Ce cursus est conforme, ton diplôme t'attend à la scolarité. Bravo " . $etudiant->getPrenom() . " !");
     var_dump($res);
 } else {
-    print_r("Retourne bosser ".$etudiant->getPrenom()." !");
+    print_r("Retourne bosser " . $etudiant->getPrenom() . " !");
     var_dump($res);
-}
+}*/
+?>
+
+
+<div class="container">
+    <div class="col-xs-9 col-xs-offset-3">
+        <h3 style="color: red"><?php
+            if (count($res) === 0) {
+
+                echo "Ce Cursus est conforme, ton diplôme t'attend à la scolarité. Bravo " . $etudiant->getPrenom() . "  !";
+            } else {
+                echo "Ce cursus n'est pas conforme " . $etudiant->getPrenom() . " : ";
+                ?> </h3>
+            <?php foreach ($res as $fail) {
+                ?>
+                <rowspan>
+                    <li> <?php echo $fail; ?></br></br></li>
+                </rowspan>
+            <?php }
+        }
+        ?>
+    </div>
+</div>

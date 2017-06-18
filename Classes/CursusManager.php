@@ -44,6 +44,20 @@ class CursusManager {
 
         return new etudiant($donnee);
     }
+    
+    public function getListCursus()
+  {
+    $cursus = [];
+
+    $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
+
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $cursus[] = $donnees;
+    }
+
+    return $cursus;    
+  }
 
     public function getList(Cursus $cursus) {
         $elementsCursus = [];

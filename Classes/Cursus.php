@@ -46,66 +46,88 @@ class Cursus {
     }
 
     function cursus_conforme(array $regles, array $elementsFormation) {
-        $valide = TRUE;
         $length = count($elementsFormation);
         $failedConditions = array();
         foreach ($regles as $value) {
             $regle = new Regle($value);
+            //var_dump($regle);
             $y = 0;
             if ($regle->getAction() === "SUM") {
                 if ($regle->getType() === "UTT(CS+TM)") {
                     $cstm = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
-                        if ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM") && $element->getUtt() === "Y" && !preg_match('#F#', $element > getResultat())) {
+                        if ($regle->getTemps_cursus() === "BR" && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM") && $element->getUtt() === "Y") {
+                            if (!preg_match('#F#', $element->getResultat())) {
+                                if ($element->getAffectation() === "TCBR" || $element->getAffectation() === "FCBR" || $element->getAffectation() === "BR") {
+                                    $cstm += $element->getCredit();
+                                }
+                            }
+                        } elseif ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM") && $element->getUtt() === "Y" && !preg_match('#F#', $element > getResultat())) {
                             $cstm += $element->getCredit();
                         }
                         $y ++;
                     }
                     if ($cstm < $regle->getCredits()) {
                         $cred = $regle->getCredits() - $cstm;
-                        $failedConditions[] = "Il manque " . $cred . " crédits de CS/TM à l'UTT.";
+                        $failedConditions[] = "Il manque " . $cred . " crédits de CS/TM en " . $regle->getTemps_cursus() . " à l'UTT.";
                     }
                 } elseif ($regle->getType() == " UTT(ME+CT) ") {
                     $mect = 0;
                     while (($mect <= $regle->getCredits()) || ($y < $length)) {
                         $element = new ElementFormation($elementsFormation[$y]);
-                        if ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT") && $element->getUtt() === "Y" && !preg_match('#F#', $element->getResultat())) {
+                        if ($regle->getTemps_cursus() === "BR" && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT") && $element->getUtt() === "Y") {
+                            if (!preg_match('#F#', $element->getResultat())) {
+                                if ($element->getAffectation() === "TCBR" || $element->getAffectation() === "FCBR" || $element->getAffectation() === "BR") {
+                                    $mect += $element->getCredit();
+                                }
+                            }
+                        } elseif ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT") && $element->getUtt() === "Y" && !preg_match('#F#', $element->getResultat())) {
                             $mect += $element->getCredit();
                         }
                         $y ++;
                     }
                     if ($mect < $regle->getCredits()) {
                         $cred = $regle->getCredits() - $mect;
-                        $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT à l'UTT.";
+                        $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT en " . $regle->getTemps_cursus() . " à l'UTT.";
                     }
                 } elseif ($regle->getType() == "CS+TM") {
                     $cstm = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
-                        if ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM") && !preg_match('#F#', $element->getResultat())) {
+                        if ($regle->getTemps_cursus() === "BR" && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM")) {
+                            if (!preg_match('#F#', $element->getResultat())) {
+                                if ($element->getAffectation() === "TCBR" || $element->getAffectation() === "FCBR" || $element->getAffectation() === "BR") {
+                                    $cstm += $element->getCredit();
+                                }
+                            }
+                        } elseif ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "CS" || $element->getCategorie() === "TM") && !preg_match('#F#', $element->getResultat())) {
                             $cstm += $element->getCredit();
                         }
                         $y ++;
                     }
                     if ($cstm < $regle->getCredits()) {
                         $cred = $regle->getCredits() - $cstm;
-                        $failedConditions[] = "Il manque " . $cred . " crédits de CS/TM .";
+                        $failedConditions[] = "Il manque " . $cred . " crédits de CS/TM en " . $regle->getTemps_cursus() . ".";
                     }
                 } elseif ($regle->getType() == "ME+CT") {
                     $mect = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
-                        if ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT") && !preg_match('#F#', $element->getResultat())) {
+                        if ($regle->getTemps_cursus() === "BR" && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT")) {
+                            if (!preg_match('#F#', $element->getResultat())) {
+                                if ($element->getAffectation() === "TCBR" || $element->getAffectation() === "FCBR" || $element->getAffectation() === "BR") {
+                                    $mect += $element->getCredit();
+                                }
+                            }
+                        } elseif ($element->getAffectation() === $regle->getTemps_cursus() && ($element->getCategorie() === "ME" || $element->getCategorie() === "CT") && !preg_match('#F#', $element->getResultat())) {
                             $mect += $element->getCredit();
                         }
-                        var_dump($element->getCategorie());
-                        var_dump($regle->getTemps_cursus());
                         $y ++;
                     }
                     if ($mect < $regle->getCredits()) {
                         $cred = $regle->getCredits() - $mect;
-                        $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT .";
+                        $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT en " . $regle->getTemps_cursus() . ".";
                     }
                 } elseif ($regle->getType() == "ALL") {
                     $credits = 0;
@@ -120,25 +142,29 @@ class Cursus {
                         $cred = $regle->getCredits() - $credits;
                         $failedConditions[] = "Il manque " . $cred . " crédits au total.";
                     }
-                } else { //if($element->getCategorie() === $regle->getType())
+                } else {//if($element->getCategorie() === $regle->getType())
                     $credits = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
-                        if ($element->getCategorie() === $regle->getType() && $element->getAffectation() === $regle->getTemps_cursus() && !preg_match('#F#', $element->getResultat())) {
+                        if ($element->getCategorie() === $regle->getType() && $regle->getTemps_cursus() === "BR" && !preg_match('#F#', $element->getResultat())) {
+                            if ($element->getAffectation() === "TCBR" || $element->getAffectation() === "FCBR" || $element->getAffectation() === "BR") {
+                                $credits += $element->getCredit();
+                            }
+                        } elseif ($element->getCategorie() === $regle->getType() && $element->getAffectation() === $regle->getTemps_cursus() && !preg_match('#F#', $element->getResultat())) {
                             $credits += $element->getCredit();
                         }
                         $y ++;
                     }
                     if ($credits < $regle->getCredits()) {
                         $cred = $regle->getCredits() - $credits;
-                        $failedConditions[] = "Il manque " . $cred . " crédits de " . $regle->getType() . ".";
+                        $failedConditions[] = "Il manque " . $cred . " crédits de " . $regle->getType() . " en " . $regle->getTemps_cursus() . ".";
                     }
                 }
             } elseif ($regle->getAction() === "EXIST") { // Cas du EXIST
-                while ($y < $length) {
-                    $exist = FALSE;
+                $exist = FALSE;
+                while ($y < $length) {                    
                     $element = new ElementFormation($elementsFormation[$y]);
-                    if ($element->getCategorie() === $regle->getType() && $element->getAffectation() === $regle->getTemps_cursus() && !preg_match('#F#', $element->getResultat())) {
+                    if (($element->getCategorie() === $regle->getType() && preg_match('#^ADM#', $element->getResultat()))) {
                         $exist = TRUE;
                     }
                     $y ++;
