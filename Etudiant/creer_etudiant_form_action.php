@@ -12,14 +12,20 @@ include '../Classes/Etudiant.php';
         <title>Création étudiant</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../../TD_TP/Include/Tp01_02.css">
+        <link rel="stylesheet" href="../Bootstrap/css/bootstrap.css" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form name="etudiant" action="../index.php" method="POST">
-        <fieldset>
-            <legend align="center"> Rentrez vos informations </legend> 
+        
+        
             
+            <?php            
+            form_start('POST', '../index.php');
+            ?>
+            <fieldset>
+            <legend align="center"> Rentrez vos informations </legend> 
             <?php
+            
             echo"<div>";
             input('id', 'text', 'id', 'Rentrez votre numéro étudiant');
             echo"</div>";
@@ -30,12 +36,24 @@ include '../Classes/Etudiant.php';
             input('prenom', 'text', 'prenom', 'Prenom  ');
             echo "</div>";
             ?>
-            <label for="utt"> Vous avez commencé en : </label>
-            TC <input type="radio" name="admission" value="TC"/>
-            Branche <input type="radio" name="admission" value="BR"/>
+            <div class="row">
+            
+                <div class="col-xs-4">
+                    <div class="radio "> 
+                        <strong>Vous avez commencé en :</strong>
+                        <label for="utt1"> 
+                            <input type="radio" name="admission" value="TC" id='utt1'/> TC
+                        </label>
+                        <label for="utt2">
+                            <input type="radio" name="admission" value="BR" id='utt2'/> Branche
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <br/>
             <?php
             echo"<div>";
-            input('filiere', 'text', 'filiere', "Filiere ");
+            input('filiere', 'text', 'filiere', "Filiere (MPL/MRI/MSI)");
             echo"</div>";
             
            
@@ -43,15 +61,15 @@ include '../Classes/Etudiant.php';
             ?>
             
             <div>                               
-            <input type="submit" value="inscription" name='choix'/> 
-           
-            
-            
-            <input type="reset" value="Annuler" name='annuler'/>   
+                <input class="btn btn-primary" type="submit" value="Submit">
+                <input class="btn btn-primary" type="reset" value="Reset"> 
             </div>
-            
-        </fieldset> 
-    </form>        
-    </div>    
+            </fieldset> 
+            <?php 
+            echo form_end();
+            ?>
+        
+        
+       
     </body>
 </html>

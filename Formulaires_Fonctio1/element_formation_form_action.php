@@ -17,7 +17,7 @@ echo "<h1>Session</h1>";
 print_r($_SESSION);
 echo '</pre>';
 
-if (!isset($_POST['choix'])){
+/*if (!isset($_POST['choix'])){
     $_SESSION['label']=$_POST['label'];
 //Création DE l'array cursus à rentrer dans la bdd et persistance
     $cursus_manager= new CursusManager($db);
@@ -27,7 +27,7 @@ if (!isset($_POST['choix'])){
     $cursus=new Cursus($donnes);
     $cursus_manager->add($cursus);
     echo "<h1 align='center'>-Cursus importé-</h1>";
-}
+}*/
 // Sous MAMP (Mac) $elem= new ElementFormation();
 
 ?>
@@ -37,44 +37,69 @@ if (!isset($_POST['choix'])){
         <title>Enregistrement de l'élément de formation</title>
         <link rel="stylesheet" href="../../../TD_TP/Include/Tp01_02.css">
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="../Bootstrap/css/bootstrap.css" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <div>
-     <form name="element" action="element_formation_form_stock.php" method="POST">
-        <fieldset>
-            <legend align="center"> Ajouter l'élément de formation (UV et ses détails) </legend> 
+ 
             
             <?php
-            
+            form_start('POST', 'element_formation_form_stock.php')
+            ?>
+            <fieldset>
+            <legend align="center"> Ajouter l'élément de formation (UV et ses détails) </legend>
+            <?php
             echo "<input type='hidden' value='' name='id'/>";
             input('sem_seq', 'text', 'sem_seq', "Semestre n° ");
-            echo "<div>";
+           
             input('sem_label', 'text', 'sem_label', 'Label(ISI1..)');
-            echo "</div>";
+            
             input('sigle', 'text', 'sigle', 'Sigle');
-            echo "<div>";
+           ;
             input('catégorie', 'text', 'categorie', 'Catégorie(CS, TM)');
-            echo "</div>";
-            input('affectation', 'text', 'affectation', "Affectation (TC...)");
-            echo "<div>";
+            
             ?>
-            <div>
-            <label for="affectation"> Affectation : </label>
-            TC <input type="radio" name="affectation" value="TC"/>
-            TCBR <input type="radio" name="affectation" value="TCBR"/>
-            BR <input type="radio" name="affectation" value="BR"/>
+            <div class="row">
+            
+                <div class="col-xs-4">
+                    <div class="radio "> 
+                        <strong>Affectation :</strong>
+                        <label for="affectation1" class="radio">  
+                            <input  type="radio" name="affectation" value="TC" id="affectation1"/>TC
+                         </label>
+                        <label for="affectation2" class="radio">
+                            <input type="radio" name="affectation" value="TCBR" id="affectation2"/> TCBR
+                         </label>
+                        <label for="affectation3" class="radio">
+                            <input type="radio" name="affectation" value="BR" id="affectatio3"/> BR
+                         </label>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="radio">
+                        <strong>Suivis à l'UTT :</strong>
+                            <label for="utt1" class="radio">  
+                                <input  type="radio" name="utt" value="Y" id="utt1"/>oui
+                            </label>
+                            <label for="utt2" class="radio">
+                                <input   type="radio" name="utt" value="N" id="utt2"/>non
+                            </label>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="radio">
+                    
+                        <strong>L'UE est-elle dans votre profil :</strong>
+                        <label for="profil1" class="radio">  
+                            <input  type="radio" name="profil" value="Y" id="profil1"/> oui
+                        </label>
+                        <label for="profil2" class="radio">
+                            <input   type="radio" name="profil" value="N"id="profil2"/> non
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div>
-            <label for="utt"> Suivis à l'UTT ? </label>
-            oui <input type="radio" name="utt" value="Y"/>
-            non <input type="radio" name="utt" value="N"/>
-            </div>
-            <div>
-            <label for="profil"> L'UE est-elle dans votre profil ? </label>
-            oui <input type="radio" name="profil" value="Y"/>
-            non <input type="radio" name="profil" value="N"/>
-            </div>
+            <br/>
             <?php
             
             echo "<div>";
@@ -89,16 +114,18 @@ if (!isset($_POST['choix'])){
             
             ?>
             <div>                               
-            <input type="submit" value="Envoyer" name='submit'/> 
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="reset" value="Reset"> 
             </div>
             
-            <div>
-            <input type="reset" value="Annuler" name='annuler'/>   
-            </div>
             
         </fieldset> 
-    </form>        
-    </div>    
+        <?php 
+
+        form_end();
+        ?>
+            
+        
         
         
         
