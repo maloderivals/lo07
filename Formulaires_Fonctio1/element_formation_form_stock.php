@@ -73,3 +73,16 @@ echo "</div>";
 
 
 
+<html>
+    <head>
+        
+        <title></title>
+        <link rel="stylesheet" href="../../../TD_TP/Include/Tp01_02.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../Bootstrap/css/bootstrap.css" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+    </body>
+</html>

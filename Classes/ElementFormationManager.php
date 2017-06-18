@@ -72,10 +72,11 @@ class ElementFormationManager {
     $elem = [];
 
     $q = $this->_db->query('SELECT * FROM element_formation ORDER BY categorie & sigle');
-
+$i=0;
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
-      $elem[] = new ElementFormation($donnees);
+      $elem[$i] = $donnees;
+      $i++;
     }
 
     return $elem;    
