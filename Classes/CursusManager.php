@@ -50,7 +50,7 @@ class CursusManager {
         $q = $this->_db->query("SELECT e.* FROM element_formation e WHERE e.cursus = '" . $cursus->getLabel() . "' ORDER BY e.sem_seq");
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $elementsCursus[] = new ElementFormation($donnees);
+            $elementsCursus[] = $donnees;
         }
 
         return $elementsCursus;

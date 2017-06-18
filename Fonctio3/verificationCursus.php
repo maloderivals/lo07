@@ -35,8 +35,12 @@ $listElements = $cursus_manager->getList($cursus);
 $listRegles = $reglement_manager->getRegles($reglement);
 
 
-if (count($cursus->cursus_conforme($regles, $elementsFormation)) === 0) {
+
+$res = $cursus->cursus_conforme($listRegles, $listElements);
+
+if ( count($res) === 0) {
     print_r("Ce cursus est conforme, ton diplôme t'attends à la scolarité. Bravo !");
 } else {
     print_r("Retourne bosser !");
+    var_dump($res);
 }

@@ -52,7 +52,7 @@ class ReglementManager {
         $q = $this->_db->query("SELECT * FROM regle WHERE idReglement='" . $reglement->getId_reglement() . "' ORDER BY num_regle" );
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $regles[] = new Regle($donnees);
+            $regles[] = $donnees;
         }
 
         return $regles;
@@ -61,11 +61,12 @@ class ReglementManager {
     public function getList() {
         // Retourne la liste de toutes les règles.
         $reglements = [];
-
+        $i=0;
         $q = $this->_db->query("SELECT * FROM reglement" );
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $reglements[] = new Reglement($donnees);
+            $reglements[$i] = $donnees;
+            $i++;
         }
 
         return $reglements;
