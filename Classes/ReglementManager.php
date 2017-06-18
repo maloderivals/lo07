@@ -49,7 +49,7 @@ class ReglementManager {
         // Retourne la liste de toutes les règles.
         $regles = [];
 
-        $q = $this->_db->query("SELECT * FROM regle WHERE idReglement='" . $reglement->getId_reglement() . "' ORDER BY num_regle" );
+        $q = $this->_db->query("SELECT r.* FROM regle r WHERE r.idReglement='" . $reglement->getId_reglement() . "' ORDER BY r.num_regle" );
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             $regles[] = $donnees;

@@ -6,7 +6,7 @@
 <?php
 include '../Classes/Reglement.php';
 include '../Classes/ReglementManager.php';
-include '../Classes/Regle.php';
+//include '../Classes/Regle.php';
 include '../Classes/RegleManager.php';
 
 extract(filter_input_array(INPUT_POST));
@@ -25,9 +25,11 @@ if ($fichier) { //ouverture du fichier temporaire
 <p align="center">- Fichier trouvé -</p>
 
 <?php
-// label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
-$bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$nom = basename($_FILES['userfile']['name'], '.csv');
+
+$bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$ligne = fgets($fp, 4096);
+$liste = explode(";", $ligne);
+$nom = $liste[1];
 $reglement = new Reglement($nom); //Il faut ddemander à l'utilisateur de choisir un id plutôt
 $manager_reglement = new ReglementManager($bdd);
 $manager_reglement->add($reglement);
