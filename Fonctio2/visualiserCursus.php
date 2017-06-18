@@ -39,10 +39,12 @@
     $creditsST = 0;
     $se = FALSE;
     $bule = FALSE;
+    $hp = [];
 
     //var_dump($listElements);
 
-    foreach ($listElements as $key => $elementForm) {
+    foreach ($listElements as $key => $elementFormation) {
+        $elementForm = new ElementFormation($elementFormation);
         if ($elementForm->getCategorie() == "CS") {
             $cs[] = $elementForm;
             if (!preg_match('#F#', $elementForm->getResultat())) {
@@ -73,6 +75,8 @@
             if (!preg_match('#F#', $elementForm->getResultat())) {
                 $creditsST += $elementForm->getCredit();
             }
+        } elseif ($elementForm->getCategorie() === "HP") {
+            $hp[] = $elementForm;
         } else {
             if (preg_match('#^ADM#', $elementForm->getResultat())) {
                 if ($elementForm->getCategorie() === "SE") {
@@ -151,25 +155,41 @@
             </div>
         </div>
         </br>
-        <div>
-            <h3>BULATS <?php
-                if ($bule) {
-                    echo 'validé.';
-                } else {
-                    echo 'non validé.';
-                }
-                ?>
-            </h3>
+        <div class="row">
+            <div class="col-xs-3">
+                <h3>Ateliers documentaires :</h3>
+                <?php foreach ($hp as $element) {
+                    ?>
+                    <rowspan>
+                        <li> <?php echo ($element->getSigle());
+                    ?></li>
+                    </rowspan>
+                <?php } ?>
+            </div>
+
+            <div class="col-xs-3 col-xs-offset-3">
+                <h3>BULATS <?php
+                    if ($bule) {
+                        echo 'validé.';
+                    } else {
+                        echo 'non validé.';
+                    }
+                    ?>
+                </h3>
+            </div>
         </div>
-        <div>
-            <h3>Semestre à l'étranger <?php
-                if ($se) {
-                    echo 'effectué.';
-                } else {
-                    echo 'non effectué.';
-                }
-                ?>
-            </h3>
+        <div class="row">
+            <div class="col-xs-3 col-xs-offset-3">
+                <h3>Semestre à l'étranger <?php
+                    if ($se) {
+                        echo 'effectué.';
+                    } else {
+                        echo 'non effectué.';
+                    }
+                    ?>
+                </h3>
+            </div>
+
         </div>
     </div>
 </body>
