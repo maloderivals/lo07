@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="Bootstrap/css/bootstrap.css" >
     </head>
     <body>
-        <h1>SITE SPECIAL ISI</h1>
-        <h2>Il s'agit d'expliquer des cursus</h2>
+        <h1> ----------------SITE SPECIAL ISI----------------</h1>
+        <h2 style="color:blueviolet">Il s'agit d'expliquer des cursus</h2>
         <div class="container"> <h3>Explication du site</h3>
             <div class="row">
                 <div class="col-xs-4"><h2><a href='Etudiant/creer_etudiant_form_action.php' title="n'ayez pas peur cliquez !!!! ">Inscrivez vous</a></h2></div>

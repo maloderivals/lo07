@@ -10,13 +10,13 @@ include '../Classes/CursusManager.php';
 $db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $cursus_manager = new CursusManager($db);
 
-echo "<h1>POST</h1>";
+/*echo "<h1>POST</h1>";
 echo '<pre>';
 print_r($_POST);
 echo "<h1>Session</h1>";
 print_r($_SESSION);
 echo '</pre>';
-
+*/
 $used = 0;
 if (!isset($_POST['choix'])) {
     if (isset($_POST['label'])) {

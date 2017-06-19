@@ -1,12 +1,16 @@
-
-<?php
+<html>
+<head>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
+    <title>Import en cours</title>
+</head>
+<body>
+    <?php
 include '../Classes/Etudiant.php';
 include '../Classes/EtudiantManager.php';
 include '../Classes/ElementFormation.php';
 include '../Classes/ElementFormationManager.php';
 include '../Classes/Cursus.php';
 include '../Classes/CursusManager.php';
-include '../include/Formulaire_Dynamique.php';
 
 
 
@@ -41,60 +45,68 @@ $etudiant = new etudiant($hashEtu);
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager_etu = new EtudiantManager($bdd);
 $manager_etu->add($etudiant);
-echo "<h1 align='center'>-Table étudiant remplis-</h1>";
+
 
 //Création du cursus
 // label = nom du fichier Ou sinon on peut demander à l'utilisateur de donner un label
 $nom = basename($_FILES['userfile']['name'], '.csv');
-$array_cursus = ['label' => $nom, 'etudiant' => $etudiant->getId()];
+$array_cursus = array ('label' => $nom, 'etudiant' => $etudiant->getId());
 $cursus_etu = new Cursus($array_cursus);
 $manager_cursus = new CursusManager($bdd);
 $manager_cursus->add($cursus_etu);
-echo "<h1 align='center'>-Table cursus remplis-</h1>";
-$attributs = array("sem_seq", "sem_label", "sigle", "categorie", "affectation", "utt", "profil", "credit", "resultat", "cursus");
+
+$attributs = array("sem_seq", "sem_label", "sigle", "categorie", "affectation", "utt", "profil", "credit", "resultat");
 
 //Importation des éléments du cursus de l'étudiant
 $ligne = fgets($fp, 4096);
 $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
 $table = filter_input(INPUT_POST, 'userfile');
 
-//$elementFormation['cursus']=$array_cursus['label'];
 while ($liste[0] !== "END") {
     if ($liste[0] === "EL") {
         $elementForm = array("id" => $liste[3] . $etudiant->getId());
         for ($i = 0; $i < 9; $i++) {
             $elementForm[$attributs[$i]] = $liste[$i + 1];   //Récupère les attributs de l'élément de formation en cours
         }
-        $elementForm['cursus'] = $array_cursus['label'];
+        
+        $elementForm['cursus']=$cursus_etu->getLabel();
         $elementFormation = new ElementFormation($elementForm);
         $manager_elementFormation = new ElementFormationManager($bdd);
-
-        $manager_elementFormation->add($elementFormation);
-        $manager_elementFormation->addToCursus($cursus_etu);
+        $manager_elementFormation->add($elementFormation, $cursus_etu);
     }
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne); // On créé un tableau des éléments séparés par des ;
     $table = filter_input(INPUT_POST, 'userfile');
 }
-echo "<h1 align='center'>-Table Element de formation remplis-</h1>";
+
 
 //Fermeture du fichier
 fclose($fp);
 ?>
-<html>
-    <head>
-        <title>Page d'import</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css" >
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
 
-        <h2><p align="center">Fin de l'import du cursus !</p></h2>
-        <div class="container">
-<?php
-button_Submit('../index.php', 'Acceuil');
-?>
-        </div>
-    </body>
+<h2><p align="center">Fin de l'import du cursus !</p></h2>
+<br/>
+<br/>
+
+<div class="container">
+
+                    <div class="row">
+                        <div class='col-xs-2 '>
+                            <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../Fonctio3/ChoisirCursusVerifier.php' role='button'>Analysercursus</a>
+                            </div>
+                        <div class="col-xs-9">
+                            <div class='col-xs-2 col-xs-offset-1'>
+                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../index.php' role='button'>Acceuil</a>
+                            </div>
+                            <div class='col-xs-3'>
+                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../Fonctio2/choisirCursus.php' role='button'>Visualiser Cursus</a>
+                            </div>
+                            <div class='col-xs-3 '>
+                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='importcsv_form.php' role='button'>Importer un autre Cursus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+</body>
 </html>

@@ -75,14 +75,14 @@ echo "";
                 <?php
              echo "<br>";
              echo "<br>";
-                button_Submit('Fontio5/importcsv_form.html', 'Importer un cursus','0');
+                button_Submit('Fonctio5/importcsv_form.php', 'Importer un cursus','0');
                 button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Créer un cursus','1');
-                button_Submit('Fonctio2/visualiserCursus.php', 'Visualiser cursus','0');
+                button_Submit('Fonctio2/choisirCursus.php', 'Visualiser cursus','0');
             echo"</div>";
             echo "<br>";
             echo "<div class= 'row'>";
                 button_Submit('Fonctio2/visualiserCursus.php', 'Comparer un cursus','0');
-                button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Analyser un cursus','1');
+                button_Submit('/Fonctio3/ChoisirCursusVerifier.php', 'Analyser un cursus','1');
                 ?>
 
                 

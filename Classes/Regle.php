@@ -2,27 +2,21 @@
 
 class Regle {
 
-    private $id;
+    private $id_regle;
     private $num_regle;
     private $action; //SUM ou EXIST
     private $type; //CS, TM...
     private $temps_cursus; //Concerne le TC, TCBR ou les deux
     private $credits; //Nombre de crédits nécessaires pour remplis la quantité.
+    private $id_reglement;
 
     
    
-  
-    function getId() {
-        return $this->id;
+    function getId_regle() {
+        return $this->id_regle;
     }
 
-    function setId($id) {
-        if (is_int($id)){
-            $this->id = $id;
-        }
-    }
-
-        function getNum_regle() {
+    function getNum_regle() {
         return $this->num_regle;
     }
 
@@ -42,42 +36,45 @@ class Regle {
         return $this->credits;
     }
 
+    function getId_reglement() {
+        return $this->id_reglement;
+    }
+
+    function setId_regle($id_regle) {
+        $this->id_regle = $id_regle;
+    }
+
     function setNum_regle($num_regle) {
-        if(is_int($num_regle)){
-            $this->num_regle = $num_regle;
-        }
+        $this->num_regle = $num_regle;
     }
 
     function setAction($action) {
-        if(is_string($action)){
-            $this->action = $action;
-        }
+        $this->action = $action;
     }
 
     function setType($type) {
-        if(is_string($type)){
-            $this->type = $type;
-        }
+        $this->type = $type;
     }
 
     function setTemps_cursus($temps_cursus) {
-        if(is_int($temps_cursus)){
-            $this->temps_cursus = $temps_cursus;
-        }
+        $this->temps_cursus = $temps_cursus;
     }
 
     function setCredits($credits) {
-        if(is_int($credits)){
-            $this->credits = $credits;
-        }
+        $this->credits = $credits;
     }
-    
-    public function hydrate(array $donnees)
+
+    function setId_reglement($id_reglement) {
+        $this->id_reglement = $id_reglement;
+    }
+
+            public function hydrate(array $donnees)
     {
       foreach ($donnees as $key => $value)
       {
+          
         $method = 'set'.ucfirst($key);
-
+        //print_r("<h1>".$method."</h1>");
         if (method_exists($this, $method))
         {
           $this->$method($value);
