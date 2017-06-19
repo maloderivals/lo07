@@ -46,20 +46,9 @@ class Cursus extends etudiant {
      
       }
 
-    public function cursus_conforme($reglement) {
-        $valide = true;
-        foreach ($reglement->regles as $line => $conditions) {
+   
+   
 
-            // je ne connais pas encore l'organisation
-            //if SUM => voir quel type d'UE ça concerne puis branche ou filière
-            //check si SUM est bon 
-            //Sinon dire ce qu'il manque (printout)
-            //
-            //if EXIST
-            //Check si ça existe notifier ce qui n'existe pas (printout)
-        }
-        return $valide;
-    }
     
 }
 

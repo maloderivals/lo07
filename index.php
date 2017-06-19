@@ -6,16 +6,16 @@ include 'Classes/EtudiantManager.php';
 include 'Classes/Etudiant.php';
 
 
-
+if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
 $id = $_POST['id'];
-
+}
 $db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $manager = new EtudiantManager($db);
-echo "<h1>POST</h1>";
+/*echo "<h1>POST</h1>";
 echo"<pre>";
 print_r($_POST);
 echo"</pre>";
-
+*/
 
 // Pour celui qui s'inscrit 
 if ($_POST['choix']=='inscription'){
@@ -34,23 +34,25 @@ else if ($_POST['choix']=='authentification'){
     //Fonction récupérer information de l'étudiant dans la base de données
     $etu = $manager->get($id);
     $donnes=$manager->Array_out($etu);
-    echo "<h1 aligne='center'>------Données------</h1>";
-    echo "<h1 align='right'>Salut ".$donnes['prenom']."!</h1>";
+   /* echo "<h1 aligne='center'>------Données------</h1>";
+    
     echo"<pre>";
     
     print_r($donnes);
     echo"</pre>";
-    
+    */
 }
+if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
+    
 $_SESSION=$donnes;
-;
+}
 
 echo "<h1>SESSION</h1>";
 echo"<pre>";
 print_r($_SESSION);
 echo"</pre>";
 
-echo "<h1 align='center'>INDEX</h1>";
+echo "";
 
 ?>
 <html>
@@ -61,15 +63,34 @@ echo "<h1 align='center'>INDEX</h1>";
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div class="container">
+            <h1>INDEX</h1>
+            <div class="row">
+                <div class="col-xs-10">
+                Salut<strong> <?php echo $_SESSION['prenom']; ?> </strong>!!!! Bienvenue sur notre nouveau site spécial ISI, fais ton choix : 
+                </div>
+            </div>
+                
+            <div class="row">
+                <?php
+             echo "<br>";
+             echo "<br>";
+                button_Submit('Fontio5/importcsv_form.html', 'Importer un cursus','0');
+                button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Créer un cursus','1');
+                button_Submit('Fonctio2/visualiserCursus.php', 'Visualiser cursus','0');
+            echo"</div>";
+            echo "<br>";
+            echo "<div class= 'row'>";
+                button_Submit('Fonctio2/visualiserCursus.php', 'Comparer un cursus','0');
+                button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Analyser un cursus','1');
+                ?>
 
-        <h2><div><a href="Fonctio5/importcsv_form.html">Importer un cursus</a></div></h2>
+                
 
-        <h2><div><a href="Fonctio5/importcsv_form.html">Test</a></div></h2>
 
-        
-        <h2><div><a href="Classes/ElementFormation.php">Error</a></div></h2>
-        
-        <h2><div><a href="Formulaires_Fonctio1/label_cursus_form.php">Creer un cursus</a></div></h2>
 
+                
+            </div>
+        </div>
     </body>
 </html>

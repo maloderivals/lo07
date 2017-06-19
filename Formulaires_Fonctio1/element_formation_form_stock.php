@@ -13,31 +13,30 @@ $manager = new ElementFormationManager($db);
 
 
 //Variable intermediares
-$nom=$_SESSION['nom'];
-$id=$_SESSION['id'];
+$nom = $_SESSION['nom'];
+$id = $_SESSION['id'];
 
 
 
 //Calcul de 'crédit' en fonction du résultat
-    if ($_POST['resultat']=='A' || $_POST['resultat']=='B' || $_POST['resultat']=='C'|| $_POST['resultat']=='D'){
-        $_POST['credit'] = 6;    
-    }
-    else{
-        $_POST['credit'] = 0; 
-    }
-    
+if ($_POST['resultat'] == 'A' || $_POST['resultat'] == 'B' || $_POST['resultat'] == 'C' || $_POST['resultat'] == 'D') {
+    $_POST['credit'] = 6;
+} else {
+    $_POST['credit'] = 0;
+}
 
-    
 
-    
- 
-    
-    
-    
+
+
+
+
+
+
+
 //adaptation de l'id et de cursus de element de formation dans la bdd    
-$_POST['cursus']=$_SESSION['label'];
-$_POST['id']=$_POST['sigle'].$id;
-$donnes=$_POST;
+$_POST['cursus'] = $_SESSION['label'];
+$_POST['id'] = $_POST['sigle'] . $id;
+$donnes = $_POST;
 
 
 echo "<h1>POST</h1>";
@@ -49,40 +48,47 @@ print_r($_SESSION);
 echo '</pre>';
 
 //ajout de l'élément de formation dans la base de données
-$elem= new ElementFormation($donnes);
-$manager->add($elem);
-echo "<h1>EF importé</h1>";
-
-echo "<div>";
-form_start('POST', 'element_formation_form_action.php');
-?>
-<input type="submit" value="Rentrer un autre Element de Formation" name="choix" />
-<?php
-form_end(); 
-echo "</div>";
-echo "<div>";
-form_start('POST', '../index.php');
-?>
-<input type="submit" value="Acceuil principal" name="choix" />
-<?php
-form_end(); 
-echo "</div>";
-// Cette page peut me renvoiyer à l'acceuil
-// Cette page peut me faire rerentrer une UE
+//$elem= new ElementFormation($donnes);
+//$manager->add($elem);
+echo "";
 ?>
 
 
 
 <html>
     <head>
-        
+
         <title></title>
-        <link rel="stylesheet" href="../../../TD_TP/Include/Tp01_02.css">
+
+
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../Bootstrap/css/bootstrap.css" >
+        <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+        <div class="container">
+            <h1>EF importé</h1>
+            <div class="row>"
+            
+<?php
+form_start('POST', 'element_formation_form_action.php');
+?>
+            <div class='form-group'>
+                <input class="btn btn-primary" type="submit" value="Rentrer un autre Element de Formation" name="choix" />
+            <?php
+            form_end();
+           
+            form_start('POST', '../index.php');
+            ?>
+
+                <input type="submit" class="btn btn-primary"  value="Acceuil principal" name="choix" />
+                <?php
+                form_end();
+                
+                // Cette page peut me renvoiyer à l'acceuil
+                // Cette page peut me faire rerentrer une UE
+                ?>
+            </div>
+            </div>
     </body>
 </html>

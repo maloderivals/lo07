@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +10,7 @@
  *
  * @author antoinegruchet
  */
-class CursusManager {
+class CursusManager extends Cursus{
     
 private $_db; // Instance de PDO.
 
@@ -48,12 +47,11 @@ private $_db; // Instance de PDO.
       
       return new etudiant($donnee);
   }
-
-  public function getList()
+  public function getListCursus()
   {
     $cursus = [];
 
-    $q = $this->_db->query('SELECT e.* FROM cursus c, element_formation e WHERE e.cursus = c.label ORDER BY sem_seq');
+    $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
@@ -61,6 +59,19 @@ private $_db; // Instance de PDO.
     }
 
     return $cursus;    
+  }
+
+  public function getList(Cursus $cursus)
+  {
+    $elementsCursus = [];
+
+    $q = $this->_db->query("SELECT e.* FROM element_formation e WHERE e.cursus = '" . $cursus->getLabel() . "' ORDER BY e.sem_seq");    
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $elementsCursus[] = $donnees;
+    }
+
+    return $elementsCursus;    
   }
 
   
