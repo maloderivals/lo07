@@ -15,12 +15,7 @@ class ElementFormation {
 
 
     function __construct($donnes) {
-
           $this->hydrate($donnes);
-
-
-
-
     }
 
     /*public function __destruct() {

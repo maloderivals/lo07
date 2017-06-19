@@ -1,0 +1,15 @@
+ID;14578;;;;;;;;
+NO;PIGNOUF;;;;;;;;
+PR;Patrick;;;;;;;;
+AD;BR;;;;;;;;
+FI;MPL;;;;;;;;
+==;s_seq;s_label;sigle;categorie;affectation;utt;profil;credit;resultat
+EL;1;ISI1;NF16;CS;TCBR;Y;Y;6;F
+EL;1;ISI1;NF20;CS;TCBR;Y;Y;6;F
+EL;1;ISI1;SY02;CS;TCBR;Y;Y;6;F
+EL;1;ISI1;IF14;TM;TCBR;Y;Y;6;F
+EL;1;ISI1;LE08;EC;BR;Y;Y;4;F
+EL;1;ISI1;GE04;ME;BR;Y;Y;4;F
+EL;1;ISI1;SC00;CT;TCBR;Y;Y;4;F
+EL;1;ISI1;BULE;NPML;TCBR;Y;Y;0;NADM
+END;;;;;;;;;

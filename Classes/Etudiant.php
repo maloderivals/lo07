@@ -36,14 +36,14 @@ class etudiant {
 
     //Modifier les setter et mettre des conditions pour éviter la casse
 
-    function setNom($nom) {
-        if (is_string($nom) && strlen($nom) <= 30) {
+    function setNom(string $nom) {
+        if (strlen($nom) <= 30) {
             $this->nom = $nom;
         }
     }
 
-    function setPrenom($prenom) {
-        if (is_string($prenom) && strlen($prenom) <= 30) {
+    function setPrenom(string $prenom) {
+        if (strlen($prenom) <= 30) {
             $this->prenom = $prenom;
         }
     }
@@ -57,26 +57,26 @@ class etudiant {
 
 
 
-    function __construct(array $donnes) {
-        $this->hydrate($donnes);
+    function __construct(array $donnees) {
+        $this->hydrate($donnees);
 
     }
 
-        function setAdmission($admission) {
+        function setAdmission(string $admission) {
 
-        if (is_string($admission) && strlen($admission) <= 10) {
+        if (strlen($admission) <= 10) {
             $this->admission = $admission;
         }
     }
 
-    function setFiliere($filiere) {
-        if (is_string($filiere) && strlen($filiere) <= 5) {
+    function setFiliere(string $filiere) {
+        if (strlen($filiere) <= 5) {
             $this->filiere = $filiere;
         }
     }
 
-    public function hydrate(array $donnes) {
-        foreach ($donnes as $key => $value) {
+    public function hydrate(array $donnees) {
+        foreach ($donnees as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
 
