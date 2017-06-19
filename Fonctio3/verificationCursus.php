@@ -15,8 +15,8 @@ include '../Classes/ReglementManager.php';
 $bdd = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
 //Récupération des infos du règlement choisi
-//$recupReg = $_POST['listReglements'];
-$reglement = new Reglement("R_FUTUR_BR");
+$recupReg = $_POST['listReglements'];
+$reglement = new Reglement($recupReg);
 $reglement_manager = new ReglementManager($bdd);
 
 //Récupération des infos du cursus choisi
@@ -37,21 +37,20 @@ $listRegles = $reglement_manager->getRegles($reglement);
 
 $res = $cursus->cursus_conforme($listRegles, $listElements);
 
-/*if (count($res) === 0) {
-    print_r("Ce cursus est conforme, ton diplôme t'attend à la scolarité. Bravo " . $etudiant->getPrenom() . " !");
-    var_dump($res);
-} else {
-    print_r("Retourne bosser " . $etudiant->getPrenom() . " !");
-    var_dump($res);
-}*/
+/* if (count($res) === 0) {
+  print_r("Ce cursus est conforme, ton diplôme t'attend à la scolarité. Bravo " . $etudiant->getPrenom() . " !");
+  var_dump($res);
+  } else {
+  print_r("Retourne bosser " . $etudiant->getPrenom() . " !");
+  var_dump($res);
+  } */
 ?>
 
 
 <div class="container">
-    <div class="col-xs-9 col-xs-offset-3">
-        <h3 style="color: red"><?php
+    <div>
+        <h3 style="color: red" align="center"><?php
             if (count($res) === 0) {
-
                 echo "Ce Cursus est conforme, ton diplôme t'attend à la scolarité. Bravo " . $etudiant->getPrenom() . "  !";
             } else {
                 echo "Ce cursus n'est pas conforme " . $etudiant->getPrenom() . " : ";
@@ -61,7 +60,8 @@ $res = $cursus->cursus_conforme($listRegles, $listElements);
                 <rowspan>
                     <li> <?php echo $fail; ?></br></br></li>
                 </rowspan>
-            <?php }
+            <?php
+            }
         }
         ?>
     </div>
