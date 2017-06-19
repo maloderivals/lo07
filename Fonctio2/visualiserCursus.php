@@ -157,7 +157,7 @@
         </br>
         <div class="row">
             <div class="col-xs-3">
-                <h3>Ateliers documentaires :</h3>
+                <h3>Hors profil :</h3>
                 <?php foreach ($hp as $element) {
                     ?>
                     <rowspan>
