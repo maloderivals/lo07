@@ -20,9 +20,9 @@ class CursusManager {
     }
 
     public function add(Cursus $cursus) {
-        // Préparation de la requête d'insertion.
-        // Assignation des valeurs.
-        // Exécution de la requête.
+// Préparation de la requête d'insertion.
+// Assignation des valeurs.
+// Exécution de la requête.
         $q = $this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu)");
         $q->bindValue(':label', $cursus->getLabel());
         $q->bindValue(':etu', $cursus->getEtudiant());
@@ -31,33 +31,30 @@ class CursusManager {
     }
 
     public function delete(Cursus $cursus) {
-        // Exécute une requête de type DELETE.
+// Exécute une requête de type DELETE.
         $this->_db->exec('DELETE FROM cursus WHERE label=' . $cursus->getLabel());
     }
 
     public function get($label) {
-        // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
-        $q = $this->_db->query("SELECT * FROM cursus WHERE label= ':label'");
-        $q->bindValue(':label', $label);
+// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
+        $q = $this->_db->query('SELECT * FROM cursus WHERE label=' . $label);
 
         $donnee = $q->fetch(PDO::FETCH_ASSOC);
 
         return new etudiant($donnee);
     }
-    
-    public function getListCursus()
-  {
-    $cursus = [];
 
-    $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
+    public function getListCursus() {
+        $cursus = [];
 
-    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-    {
-      $cursus[] = $donnees;
+        $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
+
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            $cursus[] = $donnees;
+        }
+
+        return $cursus;
     }
-
-    return $cursus;    
-  }
 
     public function getList(Cursus $cursus) {
         $elementsCursus = [];
@@ -71,9 +68,9 @@ class CursusManager {
     }
 
     public function update(cursus $cursus) {
-        // Prépare une requête de type UPDATE.
-        // Assignation des valeurs à la requête.
-        // Exécution de la requête.
+// Prépare une requête de type UPDATE.
+// Assignation des valeurs à la requête.
+// Exécution de la requête.
         $q = $this->_db->prepare('UPDATE cursus SET etudiant = :etudiant = :element WHERE label = :label');
         $q->bindValue(':label', $cursus->getLabel(), PDO::PARAM_INT);
         $q->bindValue(':etudiant', $cursus->getEtudiant(), PDO::PARAM_INT);

@@ -45,6 +45,7 @@ class Cursus {
         }
     }
 
+    
     function cursus_conforme(array $regles, array $elementsFormation) {
         $length = count($elementsFormation);
         $failedConditions = array();
