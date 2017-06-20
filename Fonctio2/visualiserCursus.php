@@ -205,7 +205,7 @@
                             </div>
                         <div class="col-xs-9">
                             <div class='col-xs-2'>
-                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../index.php' role='button'>Acceuil</a>
+                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../index.php' role='button'>Accueil</a>
                             </div>
                             <div class='col-xs-3'>
                                 <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='choisirCursus.php' role='button'>Visualiser autre Cursus</a>

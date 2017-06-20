@@ -44,7 +44,7 @@ private $_db; // Instance de PDO.
       $q=$this->_db->query('SELECT * FROM cursus WHERE label='.$label);
       
       $donnee = $q->fetch(PDO::FETCH_ASSOC);
-      
+      var_dump($donnee);
       return new etudiant($donnee);
   }
   public function getListCursus()

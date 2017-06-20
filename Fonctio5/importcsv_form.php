@@ -14,7 +14,7 @@ and open the template in the editor.
     <body>
 
         
-        <h1 style="color:red"><e>Cette page a été concu spécialement pour que vous puissiez déposer des cursus ou des règlements au format CSV</e></h1>
+        <h1 style="color:red"><e>Cette page a été conçue spécialement pour que vous puissiez déposer des cursus ou des règlements au format CSV</e></h1>
 <br/>
 <br/>
 <br/>

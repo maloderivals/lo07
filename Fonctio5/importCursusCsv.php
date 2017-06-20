@@ -1,10 +1,7 @@
-<html>
 <head>
-    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
     <title>Import en cours</title>
 </head>
-<body>
-    <?php
+<?php
 include '../Classes/Etudiant.php';
 include '../Classes/EtudiantManager.php';
 include '../Classes/ElementFormation.php';
@@ -68,8 +65,6 @@ while ($liste[0] !== "END") {
         for ($i = 0; $i < 9; $i++) {
             $elementForm[$attributs[$i]] = $liste[$i + 1];   //Récupère les attributs de l'élément de formation en cours
         }
-        
-        $elementForm['cursus']=$cursus_etu->getLabel();
         $elementFormation = new ElementFormation($elementForm);
         $manager_elementFormation = new ElementFormationManager($bdd);
         $manager_elementFormation->add($elementFormation, $cursus_etu);
@@ -85,28 +80,7 @@ fclose($fp);
 ?>
 
 <h2><p align="center">Fin de l'import du cursus !</p></h2>
-<br/>
-<br/>
 
-<div class="container">
-
-                    <div class="row">
-                        <div class='col-xs-2 '>
-                            <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../Fonctio3/ChoisirCursusVerifier.php' role='button'>Analysercursus</a>
-                            </div>
-                        <div class="col-xs-9">
-                            <div class='col-xs-2 col-xs-offset-1'>
-                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../index.php' role='button'>Acceuil</a>
-                            </div>
-                            <div class='col-xs-3'>
-                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../Fonctio2/choisirCursus.php' role='button'>Visualiser Cursus</a>
-                            </div>
-                            <div class='col-xs-3 '>
-                                <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='importcsv_form.php' role='button'>Importer un autre Cursus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-</body>
-</html>
+<form method="post" enctype="multipart/form-data" action="importcsv_form.php">
+    <input name="submit" type="submit" value="Importer d'autres fichiers"/>
+</form>

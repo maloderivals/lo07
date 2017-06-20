@@ -27,7 +27,7 @@ echo '</pre>';
 
 <html>
     <head>
-        <title>Nom de votre CURSUS</title>
+        <title>Création de votre CURSUS</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../Bootstrap/css/bootstrap.css" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,7 @@ echo '</pre>';
                     echo"</div>"; 
                 echo"</fieldset>";
                 ?>
-        <input class="btn btn-primary"  name='choix' type="submit" value="Création">
+        <input class="btn btn-primary"  name='input' type="submit" value="Création">
                 <input class="btn btn-primary"  type="reset" value="Reset"> 
         <?php
             form_end();

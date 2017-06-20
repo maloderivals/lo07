@@ -5,7 +5,7 @@ include 'include/Formulaire_Dynamique_fonction.php';
 include 'Classes/EtudiantManager.php';
 include 'Classes/Etudiant.php';
 
-
+if(isset($_POST['choix'])){
 if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
 $id = $_POST['id'];
 }
@@ -46,13 +46,8 @@ if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
     
 $_SESSION=$donnes;
 }
+}
 
-echo "<h1>SESSION</h1>";
-echo"<pre>";
-print_r($_SESSION);
-echo"</pre>";
-
-echo "";
 
 ?>
 <html>
@@ -67,7 +62,12 @@ echo "";
             <h1>INDEX</h1>
             <div class="row">
                 <div class="col-xs-10">
-                Salut<strong> <?php echo $_SESSION['prenom']; ?> </strong>!!!! Bienvenue sur notre nouveau site spécial ISI, fais ton choix : 
+                Salut<strong> <?php 
+                if (isset($_SESSION['prenom']))
+                {
+                    echo $_SESSION['prenom']; 
+                }
+                ?> </strong>!!!! Bienvenue sur notre nouveau site spécial ISI, fais ton choix : 
                 </div>
             </div>
                 
@@ -81,8 +81,9 @@ echo "";
             echo"</div>";
             echo "<br>";
             echo "<div class= 'row'>";
-                button_Submit('Fonctio2/visualiserCursus.php', 'Comparer un cursus','0');
-                button_Submit('/Fonctio3/ChoisirCursusVerifier.php', 'Analyser un cursus','1');
+                button_Submit('Fonctio2/choisirCursus.php', 'Comparer un cursus','0');
+                button_Submit('Fonctio3/ChoisirCursusVerifier.php', 'Analyser un cursus','1');
+                button_Submit('1erePage.php', 'Se déconnecter','0');
                 ?>
 
                 

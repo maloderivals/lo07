@@ -38,7 +38,7 @@ $_POST['cursus'] = $_SESSION['label'];
 $_POST['id'] = $_POST['sigle'] . $id;
 $donnes = $_POST;
 
-
+/*
 echo "<h1>POST</h1>";
 echo '<pre>';
 print_r($_POST);
@@ -46,10 +46,10 @@ print_r($_POST);
 echo "<h1>Session</h1>";
 print_r($_SESSION);
 echo '</pre>';
-
+*/
 //ajout de l'élément de formation dans la base de données
-//$elem= new ElementFormation($donnes);
-//$manager->add($elem);
+$elem= new ElementFormation($donnes);
+$manager->add($elem);
 echo "";
 ?>
 

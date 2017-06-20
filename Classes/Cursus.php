@@ -53,7 +53,7 @@ class Cursus {
         $failedConditions = array();
             echo "<div>";
             echo "<pre>";
-            //var_dump($regles);
+            var_dump($regles);
             //var_dump($listRegles);
             //var_dump($listElements);
             echo "</pre>";
@@ -68,8 +68,8 @@ class Cursus {
             
             
             $y = 0;
-            if ($regle->getAction() === "SUM") {
-                if ($regle->getType() === "UTT(CS+TM)") {
+            if ($regle->getAction() === " SUM ") {
+                if ($regle->getType() === " UTT(CS+TM) ") {
                     $cstm = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -145,7 +145,7 @@ class Cursus {
                         $cred = $regle->getCredits() - $mect;
                         $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT en " . $regle->getTemps_cursus() . ".";
                     }
-                } elseif ($regle->getType() == "ALL") {
+                } elseif ($regle->getType() == " ALL ") {
                     $credits = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -176,7 +176,7 @@ class Cursus {
                         $failedConditions[] = "Il manque " . $cred . " crédits de " . $regle->getType() . " en " . $regle->getTemps_cursus() . ".";
                     }
                 }
-            } elseif ($regle->getAction() === "EXIST") { // Cas du EXIST
+            } elseif ($regle->getAction() === " EXIST ") { // Cas du EXIST
                 $exist = FALSE;
                 while ($y < $length) {                    
                     $element = new ElementFormation($elementsFormation[$y]);
