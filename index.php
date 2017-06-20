@@ -5,7 +5,7 @@ include 'include/Formulaire_Dynamique_fonction.php';
 include 'Classes/EtudiantManager.php';
 include 'Classes/Etudiant.php';
 
-
+if(isset($_POST['choix'])){
 if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
 $id = $_POST['id'];
 }
@@ -47,13 +47,8 @@ if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
     
 $_SESSION=$donnes;
 }
+}
 
-echo "<h1>SESSION</h1>";
-echo"<pre>";
-print_r($_SESSION);
-echo"</pre>";
-
-echo "";
 
 ?>
 <html>
@@ -68,7 +63,12 @@ echo "";
             <h1>INDEX</h1>
             <div class="row">
                 <div class="col-xs-10">
-                Salut<strong> <?php echo $_SESSION['prenom']; ?> </strong>!!!! Bienvenue sur notre nouveau site spécial ISI, fais ton choix : 
+                Salut<strong> <?php 
+                if (isset($_SESSION['prenom']))
+                {
+                    echo $_SESSION['prenom']; 
+                }
+                ?> </strong>!!!! Bienvenue sur notre nouveau site spécial ISI, fais ton choix : 
                 </div>
             </div>
                 
@@ -76,14 +76,15 @@ echo "";
                 <?php
              echo "<br>";
              echo "<br>";
-                button_Submit('Fontio5/importcsv_form.html', 'Importer un cursus','0');
+                button_Submit('Fonctio5/importcsv_form.php', 'Importer un cursus','0');
                 button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Créer un cursus','1');
-                button_Submit('Fonctio2/visualiserCursus.php', 'Visualiser cursus','0');
+                button_Submit('Fonctio2/choisirCursus.php', 'Visualiser cursus','0');
             echo"</div>";
             echo "<br>";
             echo "<div class= 'row'>";
-                button_Submit('Fonctio2/visualiserCursus.php', 'Comparer un cursus','0');
-                button_Submit('Formulaires_Fonctio1/label_cursus_form.php', 'Analyser un cursus','1');
+                button_Submit('Fonctio2/choisirCursus.php', 'Comparer un cursus','0');
+                button_Submit('Fonctio3/ChoisirCursusVerifier.php', 'Analyser un cursus','1');
+                button_Submit('1erePage.php', 'Se déconnecter','0');
                 ?>
 
                 

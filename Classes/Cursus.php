@@ -27,34 +27,49 @@ class Cursus {
         $this->etudiant = $etudiant;
     }
 
-    function __construct(string $label, int $etudiant) {
-        $this->label = $label;
-        $this->etudiant = $etudiant;
+    function __construct($donnees) {
+        $this->hydrate($donnees);
     }
 
     public function hydrate(array $donnees) {
         foreach ($donnees as $key => $value) {
-            // On récupère le nom du setter correspondant à l'attribut.
+// On récupère le nom du setter correspondant à l'attribut.
             $method = 'set' . ucfirst($key);
 
-            // Si le setter correspondant existe.
+// Si le setter correspondant existe.
             if (method_exists($this, $method)) {
-                // On appelle le setter.
+// On appelle le setter.
                 $this->$method($value);
             }
         }
     }
 
-    
     function cursus_conforme(array $regles, array $elementsFormation) {
+
         $length = count($elementsFormation);
+        if ($length == 0) {
+            return "Mais vous n'avez rien validé.... Retournez travailler";
+        }
         $failedConditions = array();
+        echo "<div>";
+        echo "<pre>";
+        var_dump($regles);
+//var_dump($listRegles);
+//var_dump($listElements);
+        echo "</pre>";
+        echo "</div>";
         foreach ($regles as $value) {
+//print_r($value);
             $regle = new Regle($value);
-            //var_dump($regle);
+
+//var_dump($regle);
+//var_dump($listRegles);
+//var_dump($listElements);
+
+
             $y = 0;
-            if ($regle->getAction() === "SUM") {
-                if ($regle->getType() === "UTT(CS+TM)") {
+            if ($regle->getAction() === " SUM ") {
+                if ($regle->getType() === " UTT(CS+TM) ") {
                     $cstm = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -130,7 +145,7 @@ class Cursus {
                         $cred = $regle->getCredits() - $mect;
                         $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT en " . $regle->getTemps_cursus() . ".";
                     }
-                } elseif ($regle->getType() == "ALL") {
+                } elseif ($regle->getType() == " ALL ") {
                     $credits = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -161,9 +176,9 @@ class Cursus {
                         $failedConditions[] = "Il manque " . $cred . " crédits de " . $regle->getType() . " en " . $regle->getTemps_cursus() . ".";
                     }
                 }
-            } elseif ($regle->getAction() === "EXIST") { // Cas du EXIST
+            } elseif ($regle->getAction() === " EXIST ") { // Cas du EXIST
                 $exist = FALSE;
-                while ($y < $length) {                    
+                while ($y < $length) {
                     $element = new ElementFormation($elementsFormation[$y]);
                     if (($element->getCategorie() === $regle->getType() && preg_match('#^ADM#', $element->getResultat()))) {
                         $exist = TRUE;

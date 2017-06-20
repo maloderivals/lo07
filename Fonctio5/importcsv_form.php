@@ -6,12 +6,17 @@ and open the template in the editor.
 -->
 <html>
     <head>
+<<<<<<< HEAD
         <title>Importe un fichier gros</title>
+=======
+        <title>Importe un fichier</title>
+>>>>>>> gruch
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" >
     </head>
     <body>
+<<<<<<< HEAD
         
         <div><a href='../Fonctio2/choisirCursus.php' title="n'ayez pas peur cliquez !!!! ">choisir un cursus à analyser</a></div>
         
@@ -88,6 +93,50 @@ and open the template in the editor.
                     <input name="submit" type="submit" value="Check ça !"/>
                 </p>
             </form>
+=======
+
+        
+        <h1 style="color:red"><e>Cette page a été conçue spécialement pour que vous puissiez déposer des cursus ou des règlements au format CSV</e></h1>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+
+        <div class='container'>
+           
+            <div class='row'>
+                <div class ="col-xs-12">
+                <div class="col-xs-5"> 
+            <h2>Choisis le  cursus a importer</h2>
+            <form method="post" enctype="multipart/form-data" action="importCursusCsv.php">
+                <input name ="userfile" type="file" value="table" />
+                <br/>
+                <input class="btn btn-primary" name="submit" type="submit" value="Importer"/><br>
+            </form>
+                </div>
+                <div class="col-xs-5 ">
+       
+
+        
+            <h2>Choisis le règlement que tu veux importer</h2>
+            <form method="post" enctype="multipart/form-data" action="../Fonctio3/importReglementCsv.php">
+                <input name ="userfile" type="file" value="table" />
+                <br/>
+                <input class="btn btn-primary" name="submit" type="submit" value="Importer"/>
+            </form>
+                    </div>
+        </div>
+ </div>
+        <div>
+            
+           
+            
+>>>>>>> gruch
         </div>
     </body>
 

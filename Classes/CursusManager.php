@@ -11,50 +11,54 @@
  *
  * @author antoinegruchet
  */
-class CursusManager {
+class CursusManager extends Cursus{
+    
+private $_db; // Instance de PDO.
 
-    private $_db; // Instance de PDO.
+  public function __construct($db)
+  {
+    $this->setDb($db);
+  }
 
-    public function __construct($db) {
-        $this->setDb($db);
+  public function add(Cursus $cursus)
+  {
+    // Préparation de la requête d'insertion.
+    // Assignation des valeurs.
+    // Exécution de la requête.
+      $q=$this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu)");
+      $q->bindValue(':label',$cursus->getLabel());
+      $q->bindValue(':etu',$cursus->getEtudiant());
+      
+      $q->execute();
+      
+  }
+
+  public function delete(Cursus $cursus)
+  {
+    // Exécute une requête de type DELETE.
+      $this->_db->exec('DELETE FROM cursus WHERE label='.$cursus->getLabel());
+  }
+
+  public function get($label)
+  {
+    // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
+      $q=$this->_db->query('SELECT * FROM cursus WHERE label='.$label);
+      
+      $donnee = $q->fetch(PDO::FETCH_ASSOC);
+      var_dump($donnee);
+      return new etudiant($donnee);
+  }
+  public function getListCursus()
+  {
+    $cursus = [];
+
+    $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
+
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $cursus[] = new Cursus($donnees);
     }
-
-    public function add(Cursus $cursus) {
-// Préparation de la requête d'insertion.
-// Assignation des valeurs.
-// Exécution de la requête.
-        $q = $this->_db->prepare("INSERT INTO `cursus` (`label`, `etudiant`) VALUES (:label, :etu)");
-        $q->bindValue(':label', $cursus->getLabel());
-        $q->bindValue(':etu', $cursus->getEtudiant());
-
-        $q->execute();
-    }
-
-    public function delete(Cursus $cursus) {
-// Exécute une requête de type DELETE.
-        $this->_db->exec('DELETE FROM cursus WHERE label=' . $cursus->getLabel());
-    }
-
-    public function get($label) {
-// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
-        $q = $this->_db->query('SELECT * FROM cursus WHERE label=' . $label);
-
-        $donnee = $q->fetch(PDO::FETCH_ASSOC);
-
-        return new etudiant($donnee);
-    }
-
-    public function getListCursus() {
-        $cursus = [];
-
-        $q = $this->_db->query('SELECT * FROM cursus ORDER BY label');
-
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $cursus[] = $donnees;
-        }
-
-        return $cursus;
-    }
+  }
 
     public function getList(Cursus $cursus) {
         $elementsCursus = [];
