@@ -29,11 +29,14 @@ if ($fichier) { //ouverture du fichier temporaire
 <?php
 //Importation de l'étu
 $etu = array();
+echo 'yo';
 for ($i = 0; $i < 5; $i ++) {
     $ligne = fgets($fp, 4096);
     $liste = explode(";", $ligne);
     $table = filter_input(INPUT_POST, 'userfile');
     $etu[$i] = $liste[1];
+    var_dump($liste);
+    var_dump($etu);
 }
 
 $hashEtu = array("id" => $etu[0], "nom" => $etu[1], "prenom" => $etu[2], "admission" => $etu[3], "filiere" => $etu[4]);
