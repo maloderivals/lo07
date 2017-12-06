@@ -40,8 +40,7 @@
     $se = FALSE;
     $bule = FALSE;
     $hp = [];
-
-    //var_dump($listElements);
+    
 
     foreach ($listElements as $key => $elementFormation) {
         $elementForm = new ElementFormation($elementFormation);

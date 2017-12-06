@@ -35,9 +35,8 @@ class EtudiantManager {
     // Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet etudiant.
       $q=$this->_db->query('SELECT * FROM etudiant WHERE id='.$id);
       
-      $donnes = $q->fetch(PDO::FETCH_ASSOC);
-      
-      return new etudiant($donnes);
+      $donnees = $q->fetch(PDO::FETCH_ASSOC);
+      return new etudiant($donnees);
   }
 
   public function getList()

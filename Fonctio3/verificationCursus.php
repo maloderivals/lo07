@@ -24,39 +24,21 @@
 //Récupération des infos du cursus choisi
         $recup = $_POST['listCursus'];
         $curs = explode(" - ", $recup);
-        echo "<pre>";
-        var_dump($recup);
         $cur = array('label' => $curs[0], 'etudiant' => $curs[1]);
-        var_dump($curs);
-        var_dump($cur);
-        echo "</pre>";
         $cursus = new Cursus($cur);
         $cursus_manager = new CursusManager($bdd);
-//var_dump($cursus);
         $etu_manager = new EtudiantManager($bdd);
         $etudiant = $etu_manager->get($cursus->getEtudiant());
         $manager_elem = new ElementFormationManager($bdd);
+        
 
 
 //Récupération des éléments du cursus
+
+
         $listElements = $cursus_manager->getList($cursus);
         $listRegles = $reglement_manager->getRegles($reglement);
-         echo "<div>";
-          echo "<pre>";
-          echo"<h1>-listRegle</h1>";
-          var_dump($listRegles);
-          echo"<h1>-listElement</h1>";
-          var_dump($listElements);
-          echo "</pre>";
-          echo "</div>";
 
-          echo "<div>";
-          echo "<pre>";
-
-
-          echo "</pre>";
-          echo "</div>";
-         
         $res = $cursus->cursus_conforme($listRegles, $listElements);
 
         /* if (count($res) === 0) {
@@ -99,7 +81,7 @@
                     <div class="row">
                         <div class='col-xs-2 '>
                             <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='ChoisirCursusVerifier.php' role='button'>Choisir un autre cursus</a>
-                            </div>
+                        </div>
                         <div class="col-xs-9">
                             <div class='col-xs-2 col-xs-offset-1'>
                                 <a class='btn btn-primary btn-lg active' role='button' aria-pressed='true' href='../index.php' role='button'>Accueil</a>
