@@ -22,7 +22,6 @@ if (!isset($_POST['choix'])) {
     if (isset($_POST['label'])) {
 
         $tab = $cursus_manager->getListCursus();
-        var_dump($tab);
         foreach ($tab as $value) {
             echo "$used";
 //On vérifie si un nom de labl a déjà été rentrée

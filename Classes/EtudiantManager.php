@@ -36,7 +36,10 @@ class EtudiantManager {
       $q=$this->_db->query('SELECT * FROM etudiant WHERE id='.$id);
       
       $donnees = $q->fetch(PDO::FETCH_ASSOC);
+<<<<<<< HEAD
       
+=======
+>>>>>>> gruch
       return new etudiant($donnees);
   }
 

@@ -51,6 +51,7 @@ class Cursus {
             return "Mais vous n'avez rien validé.... Retournez travailler";
         }
         $failedConditions = array();
+<<<<<<< HEAD
         echo "<div>";
         echo "<pre>";
         var_dump($regles);
@@ -67,9 +68,18 @@ class Cursus {
 //var_dump($listElements);
 
 
+=======
+            
+        foreach ($regles as $value) {
+     
+            $regle = new Regle($value);
+            
+           
+            
+>>>>>>> gruch
             $y = 0;
-            if ($regle->getAction() === " SUM ") {
-                if ($regle->getType() === " UTT(CS+TM) ") {
+            if ($regle->getAction() === "SUM") {
+                if ($regle->getType() === "UTT(CS+TM)") {
                     $cstm = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -88,7 +98,7 @@ class Cursus {
                         $cred = $regle->getCredits() - $cstm;
                         $failedConditions[] = "Il manque " . $cred . " crédits de CS/TM en " . $regle->getTemps_cursus() . " à l'UTT.";
                     }
-                } elseif ($regle->getType() == " UTT(ME+CT) ") {
+                } elseif ($regle->getType() == "UTT(ME+CT)") {
                     $mect = 0;
                     while (($mect <= $regle->getCredits()) || ($y < $length)) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -145,7 +155,7 @@ class Cursus {
                         $cred = $regle->getCredits() - $mect;
                         $failedConditions[] = "Il manque " . $cred . " crédits de ME/CT en " . $regle->getTemps_cursus() . ".";
                     }
-                } elseif ($regle->getType() == " ALL ") {
+                } elseif ($regle->getType() == "ALL") {
                     $credits = 0;
                     while ($y < $length) {
                         $element = new ElementFormation($elementsFormation[$y]);
@@ -176,7 +186,7 @@ class Cursus {
                         $failedConditions[] = "Il manque " . $cred . " crédits de " . $regle->getType() . " en " . $regle->getTemps_cursus() . ".";
                     }
                 }
-            } elseif ($regle->getAction() === " EXIST ") { // Cas du EXIST
+            } elseif ($regle->getAction() === "EXIST") { // Cas du EXIST
                 $exist = FALSE;
                 while ($y < $length) {
                     $element = new ElementFormation($elementsFormation[$y]);
