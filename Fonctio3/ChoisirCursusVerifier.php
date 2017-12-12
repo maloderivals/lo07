@@ -16,11 +16,7 @@ foreach ($etulist as $key => $etu) {
 
 $manager_reglement = new ReglementManager($bdd);
 $reglementsList = $manager_reglement->getList();
-/*$reglements = [];
-foreach ($reglementsList as $key => $reg) {
-    $reglem = $reg->getNom_reglement();
-    $reglements[] = $reglem['nom_reglement'];
-}*/
+
 
 
 function getCursus($db, $etu) {
@@ -42,10 +38,8 @@ foreach ($etudiants as $etud) {
     $cursus[] = getCursus($bdd, $etud);
 }
 
-/*$length = count($reglements);
-var_dump($reglements[1]);
-var_dump($reglementsList);
-*/
+
+
 ?>
 
 <html>
@@ -56,7 +50,7 @@ var_dump($reglementsList);
     </head>
     <body>
         <div class="container">
-            <h1>Selectionner le cursus et le reglèment</h1>
+            <h1>Sélectionner le cursus et le règlement</h1>
             <br/>
             <br/>
             <br/>
@@ -74,13 +68,17 @@ var_dump($reglementsList);
                                 <option value="<?php echo($cur); ?>">
                                 <?php } ?>
                         </datalist>
+                    </p>
+                </div>
+                <div id='champs'>
+                    <p>
                         <label for="listReglements">Choisir un règlement</label>                    
                         <input list="listReglements" name="listReglements" id="listReglements">
                         <datalist id="listReglements">
                             <?php
                             foreach ($reglementsList as $reglement) {
                                 ?>
-                                <option value="<?php echo ($reglement); ?>">
+                                <option value="<?php echo ($reglement["nom_reglement"]); ?>">
                                 <?php } ?>
                         </datalist>
                         </br>
