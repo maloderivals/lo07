@@ -10,7 +10,6 @@ if ($_POST['choix']=='inscription' || $_POST['choix']=='authentification'){
 $id = $_POST['id'];
 }
 $db = new PDO('mysql:host=localhost;dbname=projet_lo07;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
 $manager = new EtudiantManager($db);
 /*echo "<h1>POST</h1>";
 echo"<pre>";
