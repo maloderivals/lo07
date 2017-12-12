@@ -1,13 +1,4 @@
 <?php
-<<<<<<< HEAD
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-=======
->>>>>>> gruch
 
 class CursusManager extends Cursus{
     
@@ -56,30 +47,38 @@ private $_db; // Instance de PDO.
     {
       $cursus[] = new Cursus($donnees);
     }
+
+    return $cursus;    
   }
 
-    public function getList(Cursus $cursus) {
-        $elementsCursus = [];
-        $q = $this->_db->query("SELECT e.* FROM element_formation e WHERE e.cursus = '" . $cursus->getLabel() . "' ORDER BY e.sem_seq");
+  public function getList(Cursus $cursus)
+  {
+    $elementsCursus = [];
 
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
-            $elementsCursus[] = $donnees;
-        }
-
-        return $elementsCursus;
+    $q = $this->_db->query("SELECT e.* FROM element_formation e WHERE e.cursus = '" . $cursus->getLabel() . "' ORDER BY e.sem_seq");    
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      $elementsCursus[] = $donnees;
     }
 
-    public function update(cursus $cursus) {
-// Prépare une requête de type UPDATE.
-// Assignation des valeurs à la requête.
-// Exécution de la requête.
-        $q = $this->_db->prepare('UPDATE cursus SET etudiant = :etudiant = :element WHERE label = :label');
-        $q->bindValue(':label', $cursus->getLabel(), PDO::PARAM_INT);
-        $q->bindValue(':etudiant', $cursus->getEtudiant(), PDO::PARAM_INT);
-    }
+    return $elementsCursus;    
+  }
 
-    public function setDb(PDO $db) {
-        $this->_db = $db;
-    }
+  
+  
+  public function update(cursus $cursus)
+  {
+    // Prépare une requête de type UPDATE.
+    // Assignation des valeurs à la requête.
+    // Exécution de la requête.
+      $q=$this->_db->prepare('UPDATE cursus SET etudiant = :etudiant = :element WHERE label = :label');
+      $q->bindValue(':label',$cursus->getLabel(),PDO::PARAM_INT);
+      $q->bindValue(':etudiant',$cursus->getEtudiant(),PDO::PARAM_INT);
+  }
 
+  public function setDb(PDO $db)
+  {
+    $this->_db = $db;
+  }
+  
 }

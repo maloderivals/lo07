@@ -36,10 +36,6 @@ class EtudiantManager {
       $q=$this->_db->query('SELECT * FROM etudiant WHERE id='.$id);
       
       $donnees = $q->fetch(PDO::FETCH_ASSOC);
-<<<<<<< HEAD
-      
-=======
->>>>>>> gruch
       return new etudiant($donnees);
   }
 
@@ -64,9 +60,9 @@ class EtudiantManager {
     // Prépare une requête de type UPDATE.
     // Assignation des valeurs à la requête.
     // Exécution de la requête.
-    $q = $this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom=:prenom, admission = :admission, filiere = :filiere WHERE id = :id');
-        $q->bindValue(':id', $etu->getId(), PDO::PARAM_INT);
-        $q->bindValue(':nom',$etu->getNom(),PDO::PARAM_INT);
+      $q=$this->_db->prepare('UPDATE etudiant SET nom = :nom, prenom=:prenom, admission = :admission, filiere = :filiere WHERE id = :id');
+      $q->bindValue(':id',$etu->getId(),PDO::PARAM_INT);
+      $q->bindValue(':nom',$etu->getNom(),PDO::PARAM_INT);
       $q->bindValue(':prenom',$etu->getNom(),PDO::PARAM_INT);
       $q->bindValue(':admission',$etu->getAdmission(),PDO::PARAM_INT);
       $q->bindValue(':filiere',$etu->getFiliere(),PDO::PARAM_INT);
